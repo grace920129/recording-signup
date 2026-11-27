@@ -52,8 +52,8 @@
     overflow:hidden;
   }
   .hero::after{
-    content:"";position:absolute;inset:auto -60px -120px auto;width:260px;height:260px;
-    background:radial-gradient(circle at center, rgba(242,181,68,.35), rgba(242,181,68,0) 68%);
+    content:"";position:absolute;inset:auto -90px -170px auto;width:280px;height:280px;
+    background:radial-gradient(circle at center, rgba(242,181,68,.16), rgba(242,181,68,0) 70%);
     pointer-events:none;
   }
   .hero .wrap{position:relative;z-index:1}
@@ -181,7 +181,7 @@
   }
   .bar{flex:1;height:7px;border-radius:99px;background:#efeaf8;overflow:hidden}
   .bar > i{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,#7c46d8,#b58cf5);transition:width .35s ease}
-  .count-bar span{font-size:12px;font-weight:800;color:var(--brand);white-space:nowrap}
+  .count-bar span{display:none}
   .rows{list-style:none;margin:0;padding:0;border-top:1px solid #f1ecf8}
   .row{
     display:grid;grid-template-columns:56px 1fr auto;grid-template-areas:"t who key" "t note note";
@@ -288,10 +288,15 @@
 </style>
 </head>
 <body>
+<noscript>
+  <div style="max-width:600px;margin:20px auto;padding:16px;border-radius:14px;background:#fff3e8;color:#a4441a;font-weight:700;font-size:14px">
+    이 페이지는 자바스크립트가 필요해요. 브라우저 설정에서 자바스크립트를 켜거나, 선생님께 카톡으로 신청해 주세요.
+  </div>
+</noscript>
 
 <header class="hero">
   <div class="wrap">
-    <p class="eyebrow">대구 그레이스 음악연습실</p>
+    <p class="eyebrow">보컬 레슨 · 녹음 안내</p>
     <h1><span class="emoji" aria-hidden="true">🎤</span>12월 20일(일)<br>레슨 녹음 신청</h1>
     <p class="hero-sub">대구 그레이스 음악연습실 · 한 타임에 한 분씩, 선착순</p>
     <ul class="facts">
@@ -301,7 +306,7 @@
       </li>
       <li>
         <span class="ico" aria-hidden="true">📍</span>
-        <div><b>그레이스 음악연습실 남산점</b><small>12:30 · 13:00 · 13:30 · 14:00 · 14:30 · 15:00 · 15:30 · 16:00 · 16:30</small></div>
+        <div><b>그레이스 음악연습실 남산점</b><small>대구 남구 남산 · 30분씩 한 분씩</small></div>
       </li>
     </ul>
     <span class="pill">🎧 한 타임에 한 분씩, 선착순</span>
