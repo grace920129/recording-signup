@@ -266,7 +266,7 @@
     position:fixed;right:14px;bottom:16px;z-index:70;
     appearance:none;font:inherit;font-size:12px;font-weight:800;cursor:pointer;
     color:#fff;background:#2b1650;border:none;border-radius:999px;padding:11px 15px;
-    box-shadow:0 10px 24px rgba(36,16,65,.3);opacity:.9;
+    box-shadow:0 10px 24px rgba(36,16,65,.28);opacity:.72;
   }
   .admin-note{
     display:none;align-items:center;gap:8px;font-size:12px;font-weight:800;color:#7a3d0b;
@@ -379,7 +379,7 @@
   </main>
 </div>
 
-<button type="button" class="admin-fab" id="adminFab" hidden>관리자</button>
+<button type="button" class="admin-fab" id="adminFab">관리자</button>
 
 <div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
   <div class="sheet-card" id="sheetCard"></div>
@@ -400,7 +400,7 @@
     // 관리자 PIN은 해시로만 비교합니다 (PIN 평문은 페이지에 없습니다)
     pinHash: '1afc3bfe6e0dc665bf82245e8bd2b4b207b1ef9c4789c675b48d271e78d0000d',
     pinSalt: 'grace-rec-2026',
-    pollMs: 20000
+    pollMs: 12000
   };
 
   var S = {
@@ -846,8 +846,7 @@
         S.admin = true;
         closeSheet();
         $('adminNote').classList.add('show');
-        $('adminFab').hidden = true;
-        render();
+        $('adminFab').hidden = true;        render();
         toast('관리자 모드로 들어왔어요');
       } else {
         var e = $('pinErr');
@@ -953,8 +952,8 @@
             successSheet({ name: name, song: song, key: key, note: note }, slot);
           } else if (res.taken) {
             S.selected = null;
-            render();
-            toast(res.taken.name + '님이 방금 신청했어요. 다른 시간을 골라 주세요', 3600);
+            toast(res.taken.name + '님이 방금 신청했어요. 다른 시간을 골라 주세요', 3800);
+            refresh(false);
           } else if (res.error === 'store') {
             recoverStore().then(function (doc) { applyDoc(doc); toast('저장소를 다시 준비했어요. 한 번 더 신청해 주세요', 3600); });
           } else {
@@ -1024,7 +1023,6 @@
     buildChips();
     bind();
     var isAdmin = /(^|[?&])admin=1?(&|$)/.test(location.search) || location.hash === '#admin';
-    if (isAdmin) $('adminFab').hidden = false;
     refresh(true).then(function () {
       // 주소에 admin=1 로 들어온 경우 바로 PIN 입력을 띄웁니다
       if (isAdmin && !S.admin) adminGate();
