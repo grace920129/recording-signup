@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>🎤 12월 20일(일) 레슨 녹음 신청</title>
+<meta name="theme-color" content="#2b1650">
+<meta name="description" content="대구 그레이스 음악연습실 · 2026년 12월 20일(일) 레슨 녹음 신청. 한 타임에 한 분씩, 선착순.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎤</text></svg>">
+<style>
+  :root{
+    --ink:#20182f;
+    --ink-soft:#4d4463;
+    --muted:#8b849b;
+    --line:#e8e2f0;
+    --bg:#f7f4fb;
+    --card:#ffffff;
+    --brand:#5b2ba8;
+    --brand-2:#8b5cf6;
+    --brand-soft:#f3edff;
+    --gold:#f2b544;
+    --ok:#12805c;
+    --ok-soft:#eafaf3;
+    --warn:#a4441a;
+    --warn-soft:#fff3e8;
+    --shadow:0 10px 30px rgba(43,22,80,.08);
+    --radius:20px;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;
+    background:
+      radial-gradient(900px 420px at 50% -160px, #e9defb 0%, rgba(233,222,251,0) 70%),
+      var(--bg);
+    color:var(--ink);
+    font-family:-apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard", "Malgun Gothic", "Noto Sans KR", system-ui, sans-serif;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+    padding-bottom:40px;
+  }
+  .wrap{max-width:640px;margin:0 auto;padding:0 14px}
+
+  /* ---------- hero ---------- */
+  .hero{
+    background:linear-gradient(158deg,#241041 0%,#3d1d75 46%,#6735bd 100%);
+    color:#fff;
+    padding:28px 0 26px;
+    border-radius:0 0 30px 30px;
+    box-shadow:0 16px 40px rgba(43,22,80,.28);
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::after{
+    content:"";position:absolute;inset:auto -60px -120px auto;width:260px;height:260px;
+    background:radial-gradient(circle at center, rgba(242,181,68,.35), rgba(242,181,68,0) 68%);
+    pointer-events:none;
+  }
+  .hero .wrap{position:relative;z-index:1}
+  .eyebrow{
+    margin:0 0 8px;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;
+    color:#d9c9ff;font-weight:700;
+  }
+  h1{
+    margin:0;font-size:27px;line-height:1.28;letter-spacing:-.02em;font-weight:800;
+    text-shadow:0 2px 14px rgba(0,0,0,.18);
+  }
+  h1 .emoji{font-size:24px;vertical-align:2px;margin-right:2px}
+  .hero-sub{margin:9px 0 20px;font-size:14.5px;color:#e4d8ff;font-weight:600}
+  .facts{list-style:none;margin:0;padding:0;display:grid;gap:9px}
+  .facts li{
+    display:flex;align-items:center;gap:11px;
+    background:rgba(255,255,255,.11);
+    border:1px solid rgba(255,255,255,.16);
+    border-radius:15px;padding:11px 14px;
+    backdrop-filter:blur(4px);
+  }
+  .facts .ico{font-size:19px;line-height:1;flex:none}
+  .facts b{display:block;font-size:14.5px;font-weight:700;letter-spacing:-.01em}
+  .facts small{display:block;font-size:12px;color:#cfc0f0;margin-top:1px}
+  .pill{
+    display:inline-flex;align-items:center;gap:6px;
+    margin-top:14px;font-size:12.5px;font-weight:700;color:#3a1d6d;
+    background:linear-gradient(180deg,#ffe6ab,#f7cd72);
+    border-radius:999px;padding:6px 13px;
+  }
+
+  /* ---------- cards ---------- */
+  main{padding-top:16px}
+  .card{
+    background:var(--card);border-radius:var(--radius);
+    padding:18px 16px 20px;box-shadow:var(--shadow);
+    border:1px solid #f0ebf7;margin-bottom:14px;
+  }
+  .card-head{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:13px}
+  .card-head h2{margin:0;font-size:16px;font-weight:800;letter-spacing:-.02em}
+  .card-head h2 .n{color:var(--brand)}
+  .card-head .meta{font-size:12px;color:var(--muted);font-weight:600;white-space:nowrap}
+
+  /* ---------- slot grid ---------- */
+  .slots{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
+  .slot{
+    appearance:none;font:inherit;text-align:center;cursor:pointer;
+    background:#fdfcff;border:1.6px solid var(--line);border-radius:16px;
+    padding:12px 6px 11px;color:var(--ink);
+    transition:transform .12s ease, box-shadow .16s ease, border-color .16s ease, background .16s ease;
+    min-height:78px;display:flex;flex-direction:column;justify-content:center;gap:3px;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .slot .t{font-size:19px;font-weight:800;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+  .slot .s{font-size:11px;font-weight:700;color:var(--ok)}
+  .slot:active{transform:scale(.97)}
+  .slot.is-taken{cursor:default;background:#f4f1f9;border-color:#e7e1f0;color:#a29bb2}
+  .slot.is-taken .s{color:#9a92ac;font-weight:600}
+  .slot.is-taken .nm{
+    font-size:11px;font-weight:800;color:#6b6076;max-width:100%;
+    overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+  }
+  .slot.is-selected{
+    border-color:var(--brand);background:var(--brand-soft);
+    box-shadow:0 0 0 3.5px rgba(91,43,168,.15);
+  }
+  .slot.is-selected .s{color:var(--brand)}
+  .slot.is-mine{border-color:#19a97a;background:var(--ok-soft)}
+  .slot.is-mine .s{color:var(--ok)}
+  .slot .ad{font-size:10.5px;font-weight:800;color:#b23a2e;margin-top:2px}
+  .slot:focus-visible{outline:3px solid rgba(91,43,168,.45);outline-offset:2px}
+
+  /* ---------- form ---------- */
+  .picked{
+    display:flex;align-items:center;gap:9px;margin:0 0 14px;
+    background:var(--brand-soft);border:1px dashed #cbb6f2;border-radius:13px;
+    padding:10px 13px;font-size:13.5px;color:#4a2d80;font-weight:600;
+  }
+  .picked b{font-size:15px;color:var(--brand);font-variant-numeric:tabular-nums}
+  .field{margin-bottom:13px}
+  .field > label{display:block;font-size:13px;font-weight:700;margin-bottom:6px;color:var(--ink-soft)}
+  .field .req{color:#c2372a;margin-left:2px}
+  .field .hint{font-size:11.5px;color:var(--muted);font-weight:500;margin-left:5px}
+  input[type=text],input[type=password],textarea{
+    width:100%;font:inherit;font-size:16px;color:var(--ink);
+    background:#fdfcff;border:1.6px solid var(--line);border-radius:13px;
+    padding:12px 13px;outline:none;transition:border-color .15s, box-shadow .15s;
+  }
+  textarea{min-height:84px;resize:vertical;line-height:1.55}
+  input::placeholder,textarea::placeholder{color:#b5aec4}
+  input:focus,textarea:focus{border-color:var(--brand);box-shadow:0 0 0 3.5px rgba(91,43,168,.13)}
+  .chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:8px}
+  .chip{
+    appearance:none;font:inherit;font-size:12.5px;font-weight:700;cursor:pointer;
+    color:#4b2f83;background:#f5f1fd;border:1.3px solid #e3d9f8;border-radius:999px;
+    padding:6px 12px;-webkit-tap-highlight-color:transparent;
+  }
+  .chip[aria-pressed=true]{background:var(--brand);color:#fff;border-color:var(--brand)}
+  .grid2{display:block}
+  .err{display:none;color:#b3271b;font-size:12.5px;font-weight:700;margin-top:6px}
+  .field.has-err input,.field.has-err textarea{border-color:#e0726a;background:#fff7f6}
+  .field.has-err .err{display:block}
+
+  .btn{
+    appearance:none;font:inherit;font-weight:800;cursor:pointer;border:none;border-radius:15px;
+    transition:transform .12s ease, box-shadow .16s ease, opacity .2s;
+  }
+  .btn:active{transform:scale(.985)}
+  .btn-primary{
+    width:100%;padding:16px;font-size:17px;color:#fff;letter-spacing:-.01em;
+    background:linear-gradient(135deg,#55239f,#7c46d8 70%,#9a63f0);
+    box-shadow:0 12px 26px rgba(91,43,168,.32);
+  }
+  .btn-primary:disabled{opacity:.62;box-shadow:none;cursor:default}
+  .btn-ghost{
+    padding:11px 15px;font-size:13.5px;color:#4b2f83;background:#f4f0fc;
+    border:1.3px solid #e3d9f8;
+  }
+  .btn-danger{background:#fdecea;color:#a52b1f;border:1.3px solid #f6d3ce}
+  .note-inline{font-size:11.5px;color:var(--muted);text-align:center;margin:11px 0 0}
+
+  /* ---------- status list ---------- */
+  .count-bar{
+    display:flex;align-items:center;gap:10px;margin:0 0 12px;
+  }
+  .bar{flex:1;height:7px;border-radius:99px;background:#efeaf8;overflow:hidden}
+  .bar > i{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,#7c46d8,#b58cf5);transition:width .35s ease}
+  .count-bar span{font-size:12px;font-weight:800;color:var(--brand);white-space:nowrap}
+  .rows{list-style:none;margin:0;padding:0;border-top:1px solid #f1ecf8}
+  .row{
+    display:grid;grid-template-columns:56px 1fr auto;grid-template-areas:"t who key" "t note note";
+    gap:2px 10px;padding:12px 2px;border-bottom:1px solid #f4f0fa;align-items:center;
+  }
+  .row .t{
+    grid-area:t;align-self:start;font-size:12.5px;font-weight:800;color:var(--brand);
+    background:var(--brand-soft);border-radius:9px;padding:5px 0;text-align:center;
+    font-variant-numeric:tabular-nums;
+  }
+  .row .who{grid-area:who;font-size:14.5px;font-weight:800;letter-spacing:-.01em;min-width:0}
+  .row .who .song{font-weight:600;color:var(--ink-soft);font-size:13px;margin-left:6px}
+  .row .key{
+    grid-area:key;font-size:12px;font-weight:800;color:#4b2f83;background:#f6f2fd;
+    border-radius:8px;padding:4px 9px;white-space:nowrap;
+  }
+  .row .note{grid-area:note;font-size:12.5px;color:var(--muted);white-space:pre-wrap;word-break:break-word}
+  .row .note.empty{color:#c4bfd0}
+  .row .acts{grid-area:key;display:flex;gap:6px;justify-content:flex-end}
+  .row .mini{
+    appearance:none;font:inherit;font-size:11.5px;font-weight:800;cursor:pointer;
+    color:#a52b1f;background:#fdecea;border:1px solid #f6d3ce;border-radius:9px;padding:5px 9px;
+  }
+  .row.is-mine{background:linear-gradient(90deg,rgba(234,250,243,.9),rgba(234,250,243,0))}
+  .row.is-mine .who::after{content:"내 신청";font-size:10.5px;font-weight:800;color:var(--ok);background:#d8f5e8;border-radius:999px;padding:2px 7px;margin-left:7px;vertical-align:2px}
+  .empty-state{text-align:center;color:var(--muted);font-size:13.5px;padding:22px 8px 8px}
+  .empty-state .ico{font-size:26px;display:block;margin-bottom:6px}
+
+  /* ---------- banner & toast ---------- */
+  .banner{
+    display:none;margin:0 0 12px;border-radius:14px;padding:11px 14px;font-size:13px;font-weight:700;
+    background:var(--warn-soft);color:var(--warn);border:1px solid #ffdabf;
+  }
+  .banner.show{display:block}
+  .banner button{
+    font:inherit;font-size:12.5px;font-weight:800;margin-left:8px;cursor:pointer;
+    background:#fff;border:1px solid #ffd0ae;border-radius:9px;padding:4px 9px;color:var(--warn);
+  }
+  .toast{
+    position:fixed;left:50%;bottom:22px;transform:translate(-50%,18px);
+    background:#241041;color:#fff;font-size:13.5px;font-weight:700;
+    padding:12px 18px;border-radius:999px;box-shadow:0 12px 30px rgba(36,16,65,.34);
+    opacity:0;pointer-events:none;transition:opacity .22s, transform .22s;z-index:80;max-width:88vw;text-align:center;
+  }
+  .toast.show{opacity:1;transform:translate(-50%,0)}
+
+  /* ---------- sheet / modal ---------- */
+  .sheet{
+    position:fixed;inset:0;z-index:90;display:none;place-items:center;padding:18px;
+    background:rgba(24,12,44,.48);backdrop-filter:blur(3px);
+  }
+  .sheet.open{display:grid}
+  .sheet-card{
+    background:#fff;border-radius:24px;padding:26px 22px 22px;width:100%;max-width:400px;
+    text-align:center;box-shadow:0 24px 60px rgba(24,12,44,.34);animation:pop .26s cubic-bezier(.2,.9,.3,1.2);
+  }
+  @keyframes pop{from{transform:scale(.93);opacity:0}to{transform:scale(1);opacity:1}}
+  .sheet-card h2{margin:0 0 6px;font-size:20px;font-weight:800;letter-spacing:-.02em}
+  .sheet-card p{margin:0;font-size:13.5px;color:var(--ink-soft)}
+  .check{
+    width:62px;height:62px;border-radius:50%;margin:0 auto 14px;display:grid;place-items:center;
+    background:linear-gradient(135deg,#d6f8ea,#a6f0d3);color:#0d7a58;font-size:31px;font-weight:800;
+    box-shadow:0 10px 22px rgba(18,128,92,.22);
+  }
+  .recap{
+    margin:16px 0 20px;text-align:left;background:#faf8fe;border:1px solid #f0ebf8;
+    border-radius:15px;padding:4px 14px;
+  }
+  .recap div{display:flex;gap:10px;padding:9px 0;border-bottom:1px solid #f1ecf8;font-size:13.5px}
+  .recap div:last-child{border-bottom:none}
+  .recap dt{width:64px;flex:none;color:var(--muted);font-weight:700;font-size:12.5px}
+  .recap dd{margin:0;font-weight:700;word-break:break-word}
+  .sheet-card .btn{width:100%}
+  .pin-input{
+    width:100%;font:inherit;font-size:24px;letter-spacing:.42em;text-align:center;font-weight:800;
+    border:1.6px solid var(--line);border-radius:14px;padding:14px 10px;margin:16px 0 6px;background:#fdfcff;outline:none;
+  }
+  .pin-input:focus{border-color:var(--brand);box-shadow:0 0 0 3.5px rgba(91,43,168,.13)}
+
+  /* ---------- admin ---------- */
+  .admin-fab{
+    position:fixed;right:14px;bottom:16px;z-index:70;
+    appearance:none;font:inherit;font-size:12px;font-weight:800;cursor:pointer;
+    color:#fff;background:#2b1650;border:none;border-radius:999px;padding:11px 15px;
+    box-shadow:0 10px 24px rgba(36,16,65,.3);opacity:.9;
+  }
+  .admin-note{
+    display:none;align-items:center;gap:8px;font-size:12px;font-weight:800;color:#7a3d0b;
+    background:#fff4e0;border:1px solid #ffe0ae;border-radius:12px;padding:8px 12px;margin-bottom:12px;
+  }
+  .admin-note.show{display:flex}
+  .admin-note .btn{margin-left:auto;font-size:11.5px;padding:5px 10px}
+  .toolbar{display:none;gap:8px;margin-top:14px}
+  .toolbar.show{display:flex}
+  .toolbar .btn{flex:1;padding:11px;font-size:13px}
+
+  footer{text-align:center;font-size:11.5px;color:#a49db3;padding:6px 0 0;line-height:1.7}
+  @media (min-width:520px){
+    h1{font-size:31px}
+    .slots{gap:11px}
+    .slot{min-height:84px}
+    .slot .t{font-size:21px}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">대구 그레이스 음악연습실</p>
+    <h1><span class="emoji" aria-hidden="true">🎤</span>12월 20일(일)<br>레슨 녹음 신청</h1>
+    <p class="hero-sub">대구 그레이스 음악연습실 · 한 타임에 한 분씩, 선착순</p>
+    <ul class="facts">
+      <li>
+        <span class="ico" aria-hidden="true">🗓</span>
+        <div><b>2026년 12월 20일(일)</b><small>12:30 ~ 17:00 · 30분씩 9타임</small></div>
+      </li>
+      <li>
+        <span class="ico" aria-hidden="true">📍</span>
+        <div><b>그레이스 음악연습실 남산점</b><small>12:30 · 13:00 · 13:30 · 14:00 · 14:30 · 15:00 · 15:30 · 16:00 · 16:30</small></div>
+      </li>
+    </ul>
+    <span class="pill">🎧 한 타임에 한 분씩, 선착순</span>
+  </div>
+</header>
+
+<div class="wrap">
+  <main>
+    <div id="banner" class="banner" role="status"></div>
+    <div id="adminNote" class="admin-note">🔐 관리자 모드 <button type="button" class="btn btn-ghost" id="adminExit">나가기</button></div>
+
+    <section class="card" aria-labelledby="slotTitle">
+      <div class="card-head">
+        <h2 id="slotTitle">시간 선택 <span class="n" id="leftCount"></span></h2>
+        <span class="meta" id="syncMeta">불러오는 중…</span>
+      </div>
+      <div class="slots" id="slots" role="group" aria-label="녹음 시간 선택"></div>
+    </section>
+
+    <section class="card" id="formCard" aria-labelledby="formTitle">
+      <div class="card-head">
+        <h2 id="formTitle">신청 정보</h2>
+        <span class="meta">30분 녹음</span>
+      </div>
+      <p class="picked" id="pickedLine">위에서 원하는 시간을 먼저 골라 주세요</p>
+      <form id="form" novalidate>
+        <div class="grid2">
+          <div class="field">
+            <label for="fName">이름<span class="req">*</span></label>
+            <input id="fName" name="name" type="text" autocomplete="name" placeholder="예) 김하늘" maxlength="20">
+            <p class="err">이름을 적어 주세요</p>
+          </div>
+          <div class="field">
+            <label for="fSong">부르는 곡<span class="req">*</span></label>
+            <input id="fSong" name="song" type="text" placeholder="예) 이등병의 편지" maxlength="60">
+            <p class="err">곡명을 적어 주세요</p>
+          </div>
+        </div>
+        <div class="field">
+          <label for="fKey">키 <span class="hint">조성</span><span class="req">*</span></label>
+          <input id="fKey" name="key" type="text" placeholder="예) 원키 / -2키 / F major" maxlength="30">
+          <div class="chips" id="keyChips"></div>
+          <p class="err">키를 적어 주세요 (모르면 '원키'라고 적어 주세요)</p>
+        </div>
+        <div class="field">
+          <label for="fNote">추가 변경 사항 <span class="hint">선택</span></label>
+          <textarea id="fNote" name="note" maxlength="300" placeholder="예) 2절부터 녹음 / 반주는 MR로 / 키 -2키로 낮춰 주세요 / 메트로놈 넣어 주세요"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" id="submitBtn">신청하기</button>
+        <p class="note-inline">신청하면 바로 저장되고, 다른 분 화면에도 바로 반영돼요.</p>
+      </form>
+    </section>
+
+    <section class="card" aria-labelledby="statusTitle">
+      <div class="card-head">
+        <h2 id="statusTitle">현재 신청 현황</h2>
+        <span class="meta" id="statusMeta">0 / 9</span>
+      </div>
+      <div class="count-bar"><div class="bar"><i id="barFill"></i></div><span id="countText">0 / 9</span></div>
+      <ul class="rows" id="rows"></ul>
+      <div class="toolbar" id="toolbar">
+        <button type="button" class="btn btn-danger" id="resetAll">모든 신청 비우기</button>
+      </div>
+    </section>
+
+    <footer>
+      대구 그레이스 음악연습실 · 2026년 12월 20일(일) 레슨 녹음<br>
+      신청을 바꾸거나 취소할 일이 있으면 선생님께 알려 주세요.
+    </footer>
+  </main>
+</div>
+
+<button type="button" class="admin-fab" id="adminFab" hidden>관리자</button>
+
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
+  <div class="sheet-card" id="sheetCard"></div>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ------------------------------------------------------------------ *
+   * 설정
+   * ------------------------------------------------------------------ */
+  var CFG = {
+    // 공유 저장소 (익명 JSON KV · mantledb.sh). 이 한 곳에 모든 신청이 저장됩니다.
+    endpoint: 'https://mantledb.sh/v2/grec20261220q9jja5/state',
+    slots: ['12:30', '13:00', '13:30', '14:00', '14:30', '15:00', '15:30', '16:00', '16:30'],
+    // 관리자 PIN은 해시로만 비교합니다 (PIN 평문은 페이지에 없습니다)
+    pinHash: '1afc3bfe6e0dc665bf82245e8bd2b4b207b1ef9c4789c675b48d271e78d0000d',
+    pinSalt: 'grace-rec-2026',
+    pollMs: 20000
+  };
+
+  var S = {
+    bookings: {},
+    selected: null,
+    myId: null,
+    myBooking: null,
+    admin: false,
+    busy: false,
+    lastSync: null,
+    loaded: false,
+    polling: null
+  };
+
+  /* ------------------------------------------------------------------ *
+   * 유틸
+   * ------------------------------------------------------------------ */
+  function $(id) { return document.getElementById(id); }
+  function esc(v) {
+    return String(v == null ? '' : v).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+  function sleep(ms) { return new Promise(function (r) { setTimeout(r, ms); }); }
+  function rid() {
+    if (window.crypto && crypto.randomUUID) return crypto.randomUUID();
+    return 'b' + Date.now().toString(36) + Math.random().toString(36).slice(2, 10);
+  }
+  function toast(msg, ms) {
+    var t = $('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    clearTimeout(t._h);
+    t._h = setTimeout(function () { t.classList.remove('show'); }, ms || 2600);
+  }
+  function banner(msg, showRetry) {
+    var b = $('banner');
+    if (!msg) { b.className = 'banner'; b.innerHTML = ''; return; }
+    b.className = 'banner show';
+    b.innerHTML = esc(msg) + (showRetry ? ' <button type="button" id="bannerRetry">다시 시도</button>' : '');
+    if (showRetry) $('bannerRetry').onclick = function () { banner(''); refresh(true); };
+  }
+  function slotIndex(s) { return CFG.slots.indexOf(s); }
+  function sortedBookings() {
+    var out = [];
+    for (var i = 0; i < CFG.slots.length; i++) {
+      var s = CFG.slots[i], b = S.bookings[s];
+      if (b && b.name) out.push({ slot: s, b: b });
+    }
+    return out;
+  }
+
+  /* ------------------------------------------------------------------ *
+   * 세션 정체성
+   * ------------------------------------------------------------------ */
+  try {
+    S.myId = sessionStorage.getItem('rec.myId');
+    if (!S.myId) { S.myId = rid(); sessionStorage.setItem('rec.myId', S.myId); }
+    S.myBooking = JSON.parse(sessionStorage.getItem('rec.myBooking') || 'null');
+  } catch (e) {
+    S.myId = rid();
+    S.myBooking = null;
+  }
+  function saveMine(v) {
+    S.myBooking = v;
+    try {
+      if (v) sessionStorage.setItem('rec.myBooking', JSON.stringify(v));
+      else sessionStorage.removeItem('rec.myBooking');
+    } catch (e) {}
+  }
+
+  /* ------------------------------------------------------------------ *
+   * 저장소 (read-modify-write + 재확인)
+   * ------------------------------------------------------------------ */
+  function apiFetch(url, opts, timeoutMs) {
+    var ctrl = new AbortController();
+    var timer = setTimeout(function () { ctrl.abort(); }, timeoutMs || 9000);
+    opts = opts || {};
+    opts.signal = ctrl.signal;
+    opts.cache = 'no-store';
+    return fetch(url, opts).then(function (res) { clearTimeout(timer); return res; },
+      function (err) { clearTimeout(timer); throw err; });
+  }
+
+  var STORE_MISSING = 'store-missing';
+
+  function readDoc() {
+    return apiFetch(CFG.endpoint + '?ts=' + Date.now(), { headers: { 'Accept': 'application/json' } })
+      .then(function (res) {
+        if (res.status === 404) throw new Error(STORE_MISSING);
+        if (!res.ok) throw new Error('read-' + res.status);
+        return res.json();
+      })
+      .then(function (data) {
+        if (data && data.error) {
+          if (/not found/i.test(String(data.error))) throw new Error(STORE_MISSING);
+          throw new Error('read-error');
+        }
+        return data && typeof data === 'object' ? data : {};
+      });
+  }
+
+  function patchDoc(payload) {
+    return apiFetch(CFG.endpoint, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(payload)
+    }).then(function (res) { return res.ok; }, function () { return false; });
+  }
+
+  function createDoc(payload) {
+    return apiFetch(CFG.endpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(payload)
+    }).then(function (res) { return res.ok; }, function () { return false; });
+  }
+
+  function parseBookings(doc) {
+    var out = {};
+    for (var i = 0; i < CFG.slots.length; i++) {
+      var s = CFG.slots[i], v = doc ? doc[s] : null;
+      if (v && typeof v === 'object' && v.name) out[s] = v;
+    }
+    return out;
+  }
+
+  function applyDoc(doc) {
+    S.bookings = parseBookings(doc);
+    S.lastSync = new Date();
+    S.loaded = true;
+    checkMineSurvived();
+    render();
+  }
+
+  function recoverStore() {
+    // 저장 항목이 사라진 경우(서비스 초기화 등) 빈 상태로 다시 만들어 페이지가 깨지지 않게 합니다.
+    // 먼저 한 번 더 확인해, 순간적인 404로 기존 신청을 덮어쓰지 않도록 합니다.
+    return readDoc()
+      .catch(function (err) {
+        if (!err || err.message !== STORE_MISSING) throw err;
+        return createDoc({ meta: { recreatedAt: new Date().toISOString(), event: 'rec-2026-12-20' } })
+          .then(function (ok) {
+            if (!ok) throw new Error('recreate-failed');
+            banner('저장소가 비어 있어 새로 준비했어요. 앞서 신청한 분이 있다면 다시 신청해 주세요.', false);
+            return {};
+          });
+      });
+  }
+
+  function refresh(showBusy) {
+    if (showBusy) $('syncMeta').textContent = '불러오는 중…';
+    return readDoc()
+      .then(function (doc) { applyDoc(doc); banner(''); })
+      .catch(function (err) {
+        if (err && err.message === STORE_MISSING) {
+          return recoverStore().then(function (doc) { applyDoc(doc); });
+        }
+        if (S.loaded) {
+          $('syncMeta').textContent = '연결 끊김';
+          banner('지금 신청 현황을 불러오지 못했어요. 잠시 후 다시 시도해 주세요.', true);
+        } else {
+          $('syncMeta').textContent = '연결 실패';
+          banner('신청 페이지를 불러오지 못했어요. 인터넷 연결을 확인하고 다시 시도해 주세요.', true);
+        }
+      });
+  }
+
+  /* ------------------------------------------------------------------ *
+   * 신청 / 취소
+   * ------------------------------------------------------------------ */
+  function book(slot, values) {
+    var mine = {
+      id: S.myId,
+      name: values.name,
+      song: values.song,
+      key: values.key,
+      note: values.note || '',
+      at: new Date().toISOString()
+    };
+    var attempt = 0;
+
+    function step() {
+      attempt++;
+      return readDoc().then(function (doc) {
+        var cur = parseBookings(doc)[slot];
+        if (cur && cur.id !== S.myId) return { ok: false, taken: cur };
+        var payload = {};
+        payload[slot] = mine;
+        return patchDoc(payload).then(function (ok) {
+          if (!ok) throw new Error('write-failed');
+          // 다른 사람의 동시 신청이 덮어썼는지 확인 (한 박자 기다렸다가 다시 읽기)
+          return sleep(450 + Math.random() * 550)
+            .then(function () { return readDoc(); })
+            .then(function (doc2) {
+              var holder = parseBookings(doc2)[slot];
+              if (holder && holder.id === S.myId) { applyDoc(doc2); return { ok: true, booking: mine }; }
+              if (holder) { applyDoc(doc2); return { ok: false, taken: holder }; }
+              throw new Error('verify-missing');
+            });
+        });
+      }).catch(function (err) {
+        if (attempt < 3) return sleep(400 * attempt + Math.random() * 300).then(step);
+        if (err && err.message === STORE_MISSING) return { ok: false, error: 'store' };
+        return { ok: false, error: 'network' };
+      });
+    }
+    return step();
+  }
+
+  function cancelSlot(slot) {
+    var attempt = 0;
+    function step() {
+      attempt++;
+      var payload = {};
+      payload[slot] = null;
+      return patchDoc(payload)
+        .then(function (ok) {
+          if (!ok) throw new Error('write-failed');
+          return sleep(350).then(function () { return readDoc(); })
+            .then(function (doc) {
+              applyDoc(doc);
+              if (!S.bookings[slot]) return true;
+              throw new Error('still-there');
+            });
+        })
+        .catch(function () {
+          if (attempt < 3) return sleep(400 * attempt).then(step);
+          return false;
+        });
+    }
+    return step();
+  }
+
+  /* ------------------------------------------------------------------ *
+   * 렌더링
+   * ------------------------------------------------------------------ */
+  function render() {
+    renderSlots();
+    renderStatus();
+    renderSyncMeta();
+  }
+
+  function renderSyncMeta() {
+    if (!S.lastSync) return;
+    var hh = String(S.lastSync.getHours()).padStart(2, '0');
+    var mm = String(S.lastSync.getMinutes()).padStart(2, '0');
+    $('syncMeta').textContent = hh + ':' + mm + ' 기준';
+  }
+
+  function renderSlots() {
+    var box = $('slots');
+    box.innerHTML = '';
+    var left = 0;
+    for (var i = 0; i < CFG.slots.length; i++) {
+      var slot = CFG.slots[i], b = S.bookings[slot];
+      var mine = !!(b && b.id === S.myId);
+      if (!b) left++;
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'slot' + (b ? ' is-taken' : '') + (mine ? ' is-mine' : '') +
+        (S.selected === slot && !b ? ' is-selected' : '');
+      btn.setAttribute('data-slot', slot);
+      var sub = b ? (mine ? '내 신청' : '신청 완료') : '신청 가능';
+      var inner = '<span class="t">' + esc(slot) + '</span>';
+      if (b) inner += '<span class="nm">' + esc(b.name) + '</span>';
+      inner += '<span class="s">' + esc(sub) + '</span>';
+      if (S.admin && b) inner += '<span class="ad">눌러서 취소</span>';
+      btn.innerHTML = inner;
+      if (b) {
+        btn.setAttribute('aria-label', slot + ' ' + b.name + ' 신청 완료, 선택 불가');
+        btn.disabled = !S.admin;
+      } else {
+        btn.setAttribute('aria-label', slot + ' 신청 가능');
+      }
+      box.appendChild(btn);
+    }
+    $('leftCount').textContent = left > 0 ? '· ' + left + '타임 남음' : '· 마감';
+    var picked = S.selected;
+    if (picked && !S.bookings[picked]) {
+      $('pickedLine').innerHTML = '🕒 <b>' + esc(picked) + '</b> 타임으로 신청합니다';
+    } else if (picked && S.bookings[picked]) {
+      $('pickedLine').textContent = '이미 신청된 시간이에요. 다른 시간을 골라 주세요';
+      S.selected = null;
+      $('formCard').classList.remove('has-pick');
+      renderSlots();
+      return;
+    } else {
+      $('pickedLine').textContent = '위에서 원하는 시간을 먼저 골라 주세요';
+    }
+    $('submitBtn').textContent = S.selected ? S.selected + ' 신청하기' : '신청하기';
+  }
+
+  function renderStatus() {
+    var list = sortedBookings();
+    var n = list.length, total = CFG.slots.length;
+    $('statusMeta').textContent = n + ' / ' + total;
+    $('countText').textContent = n + ' / ' + total;
+    $('barFill').style.width = (n / total * 100) + '%';
+
+    var ul = $('rows');
+    if (!n) {
+      ul.innerHTML = '<li class="empty-state"><span class="ico">🎶</span>아직 신청한 분이 없어요.<br>첫 번째로 시간을 골라 보세요!</li>';
+      return;
+    }
+    var html = '';
+    for (var i = 0; i < list.length; i++) {
+      var slot = list[i].slot, b = list[i].b;
+      var mine = b.id === S.myId;
+      html += '<li class="row' + (mine ? ' is-mine' : '') + '">' +
+        '<span class="t">' + esc(slot) + '</span>' +
+        '<div class="who">' + esc(b.name) + '<span class="song">' + esc(b.song) + '</span></div>' +
+        (S.admin
+          ? '<div class="acts"><button type="button" class="mini" data-cancel="' + esc(slot) + '">취소</button></div>'
+          : '<span class="key">' + esc(b.key) + '</span>') +
+        '<p class="note' + (!b.note && !S.admin ? ' empty' : '') + '">' +
+          (S.admin ? '키 ' + esc(b.key) + (b.note ? ' · ' + esc(b.note) : '') : (b.note ? esc(b.note) : '요청사항 없음')) +
+        '</p>' +
+        '</li>';
+    }
+    ul.innerHTML = html;
+    $('toolbar').classList.toggle('show', S.admin);
+  }
+
+  function checkMineSurvived() {
+    if (!S.myBooking) return;
+    var cur = S.bookings[S.myBooking.slot];
+    if (cur && cur.id !== S.myId) {
+      banner('⏰ ' + S.myBooking.slot + ' 타임이 방금 다른 분 신청으로 마감됐어요. 죄송하지만 다른 시간을 다시 골라 주세요.', false);
+      saveMine(null);
+    } else if (!cur) {
+      saveMine(null);
+    }
+  }
+
+  /* ------------------------------------------------------------------ *
+   * 입력 / 이벤트
+   * ------------------------------------------------------------------ */
+  function setFieldError(el, on) {
+    var f = el.closest('.field');
+    if (f) f.classList.toggle('has-err', !!on);
+  }
+
+  function fillKey(v) {
+    $('fKey').value = v;
+    setFieldError($('fKey'), false);
+    var chips = $('keyChips').children;
+    for (var i = 0; i < chips.length; i++) {
+      chips[i].setAttribute('aria-pressed', String(chips[i].dataset.k === v));
+    }
+  }
+
+  function buildChips() {
+    var box = $('keyChips');
+    var opts = ['원키', '-1키', '-2키', '-3키', '+1키'];
+    box.innerHTML = '';
+    opts.forEach(function (k) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'chip';
+      b.dataset.k = k;
+      b.textContent = k;
+      b.setAttribute('aria-pressed', 'false');
+      b.onclick = function () { fillKey(k); };
+      box.appendChild(b);
+    });
+  }
+
+  function selectSlot(slot) {
+    S.selected = slot;
+    renderSlots();
+    var card = $('formCard');
+    if (card) {
+      var y = card.getBoundingClientRect().top + window.pageYOffset - 12;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+    setTimeout(function () { $('fName').focus({ preventScroll: true }); }, 260);
+  }
+
+  function openSheet(html) {
+    $('sheetCard').innerHTML = html;
+    $('sheet').classList.add('open');
+  }
+  function closeSheet() {
+    $('sheet').classList.remove('open');
+    $('sheetCard').innerHTML = '';
+  }
+
+  function successSheet(values, slot) {
+    openSheet(
+      '<div class="check" aria-hidden="true">✓</div>' +
+      '<h2 id="sheetTitle">' + esc(values.name) + '님,<br>' + esc(slot) + ' 신청 완료!</h2>' +
+      '<p>2026년 12월 20일(일) · 그레이스 음악연습실 남산점</p>' +
+      '<dl class="recap">' +
+      '<div><dt>시간</dt><dd>' + esc(slot) + ' ~ ' + addMin(slot, 30) + '</dd></div>' +
+      '<div><dt>곡</dt><dd>' + esc(values.song) + '</dd></div>' +
+      '<div><dt>키</dt><dd>' + esc(values.key) + '</dd></div>' +
+      (values.note ? '<div><dt>요청</dt><dd>' + esc(values.note) + '</dd></div>' : '') +
+      '</dl>' +
+      '<button type="button" class="btn btn-primary" id="sheetClose">확인</button>'
+    );
+    $('sheetClose').onclick = function () {
+      closeSheet();
+      var t = document.getElementById('statusTitle');
+      if (t) window.scrollTo({ top: t.closest('.card').getBoundingClientRect().top + window.pageYOffset - 12, behavior: 'smooth' });
+    };
+  }
+
+  function addMin(hhmm, m) {
+    var p = hhmm.split(':');
+    var total = parseInt(p[0], 10) * 60 + parseInt(p[1], 10) + m;
+    var h = Math.floor(total / 60), mi = total % 60;
+    return String(h).padStart(2, '0') + ':' + String(mi).padStart(2, '0');
+  }
+
+  function adminGate() {
+    openSheet(
+      '<h2 id="sheetTitle">관리자 확인</h2>' +
+      '<p>PIN 4자리를 입력해 주세요</p>' +
+      '<input class="pin-input" id="pinInput" type="password" inputmode="numeric" pattern="[0-9]*" maxlength="8" autocomplete="off" aria-label="관리자 PIN">' +
+      '<p class="err" id="pinErr" style="display:none;color:#b3271b;font-size:12.5px;font-weight:700;margin:0 0 10px">PIN이 맞지 않아요</p>' +
+      '<button type="button" class="btn btn-primary" id="pinGo">확인</button>'
+    );
+    var input = $('pinInput');
+    input.focus();
+    $('pinGo').onclick = checkPin;
+    input.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); checkPin(); } });
+  }
+
+  function sha256Hex(s) {
+    if (!(window.crypto && crypto.subtle)) return Promise.resolve('');
+    return crypto.subtle.digest('SHA-256', new TextEncoder().encode(s)).then(function (buf) {
+      return Array.prototype.map.call(new Uint8Array(buf), function (b) {
+        return ('0' + b.toString(16)).slice(-2);
+      }).join('');
+    });
+  }
+
+  function checkPin() {
+    var v = ($('pinInput').value || '').trim();
+    sha256Hex(v + '|' + CFG.pinSalt).then(function (h) {
+      if (h && h === CFG.pinHash) {
+        S.admin = true;
+        closeSheet();
+        $('adminNote').classList.add('show');
+        $('adminFab').hidden = true;
+        render();
+        toast('관리자 모드로 들어왔어요');
+      } else {
+        var e = $('pinErr');
+        if (e) e.style.display = 'block';
+        var i = $('pinInput');
+        if (i) { i.value = ''; i.focus(); }
+      }
+    });
+  }
+
+  function askCancel(slot) {
+    var b = S.bookings[slot];
+    if (!b) return;
+    openSheet(
+      '<h2 id="sheetTitle">' + esc(b.name) + '님 신청 취소</h2>' +
+      '<p>' + esc(slot) + ' · ' + esc(b.song) + '</p>' +
+      '<dl class="recap"><div><dt>키</dt><dd>' + esc(b.key) + '</dd></div>' +
+      (b.note ? '<div><dt>요청</dt><dd>' + esc(b.note) + '</dd></div>' : '') + '</dl>' +
+      '<p style="margin-bottom:16px">이 신청을 취소하면 다른 분이 다시 신청할 수 있어요.</p>' +
+      '<button type="button" class="btn btn-primary" id="cancelGo" style="background:linear-gradient(135deg,#b3271b,#d1483a);box-shadow:none">취소하기</button>' +
+      '<button type="button" class="btn btn-ghost" id="cancelNo" style="width:100%;margin-top:8px">그대로 두기</button>'
+    );
+    $('cancelNo').onclick = closeSheet;
+    $('cancelGo').onclick = function () {
+      $('cancelGo').disabled = true;
+      $('cancelGo').textContent = '취소하는 중…';
+      cancelSlot(slot).then(function (ok) {
+        closeSheet();
+        if (ok) {
+          if (S.myBooking && S.myBooking.slot === slot) saveMine(null);
+          toast(b.name + '님 ' + slot + ' 신청을 취소했어요');
+          render();
+        } else {
+          toast('취소하지 못했어요. 잠시 후 다시 시도해 주세요');
+        }
+      });
+    };
+  }
+
+  /* ------------------------------------------------------------------ *
+   * 초기화
+   * ------------------------------------------------------------------ */
+  function bind() {
+    $('slots').addEventListener('click', function (e) {
+      var btn = e.target.closest('.slot');
+      if (!btn) return;
+      var slot = btn.dataset.slot;
+      if (S.bookings[slot]) {
+        if (S.admin) { askCancel(slot); return; }
+        toast(S.bookings[slot].name + '님이 신청한 시간이에요');
+        return;
+      }
+      selectSlot(slot);
+    });
+
+    $('rows').addEventListener('click', function (e) {
+      var btn = e.target.closest('[data-cancel]');
+      if (btn && S.admin) askCancel(btn.dataset.cancel);
+    });
+
+    $('form').addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (S.busy) return;
+      var name = $('fName').value.trim();
+      var song = $('fSong').value.trim();
+      var key = $('fKey').value.trim();
+      var note = $('fNote').value.trim();
+      var bad = false;
+      [['fName', name], ['fSong', song], ['fKey', key]].forEach(function (p) {
+        var el = $(p[0]);
+        var miss = !p[1];
+        setFieldError(el, miss);
+        if (miss) { bad = true; if (!el._focusDone) { el.focus(); el._focusDone = true; } }
+      });
+      if (bad) { toast('빈 칸을 채워 주세요'); return; }
+      if (!S.selected) {
+        toast('먼저 시간을 골라 주세요');
+        window.scrollTo({ top: $('slots').getBoundingClientRect().top + window.pageYOffset - 90, behavior: 'smooth' });
+        return;
+      }
+      var slot = S.selected;
+
+      // 같은 이름으로 이미 다른 시간에 신청했는지 확인
+      var dup = null;
+      for (var i = 0; i < CFG.slots.length; i++) {
+        var s = CFG.slots[i], b = S.bookings[s];
+        if (b && s !== slot && b.name.trim() === name) { dup = s; break; }
+      }
+      var go = function () {
+        S.busy = true;
+        var btn = $('submitBtn');
+        btn.disabled = true;
+        btn.textContent = '신청하는 중…';
+        book(slot, { name: name, song: song, key: key, note: note }).then(function (res) {
+          S.busy = false;
+          btn.disabled = false;
+          if (res.ok) {
+            saveMine({ slot: slot, id: S.myId });
+            $('form').reset();
+            fillKey('');
+            S.selected = null;
+            render();
+            successSheet({ name: name, song: song, key: key, note: note }, slot);
+          } else if (res.taken) {
+            S.selected = null;
+            render();
+            toast(res.taken.name + '님이 방금 신청했어요. 다른 시간을 골라 주세요', 3600);
+          } else if (res.error === 'store') {
+            recoverStore().then(function (doc) { applyDoc(doc); toast('저장소를 다시 준비했어요. 한 번 더 신청해 주세요', 3600); });
+          } else {
+            banner('신청을 저장하지 못했어요. 잠시 후 다시 시도해 주세요.', true);
+            toast('저장에 실패했어요. 잠시 후 다시 시도해 주세요', 3200);
+            render();
+          }
+        }).catch(function () {
+          S.busy = false;
+          btn.disabled = false;
+          render();
+          toast('저장에 실패했어요. 잠시 후 다시 시도해 주세요', 3200);
+        });
+      };
+
+      if (dup && !window.confirm('이미 ' + dup + '에 ' + name + '님 이름으로 신청되어 있어요.\n' + slot + '에도 추가로 신청할까요?')) return;
+      go();
+    });
+
+    $('fKey').addEventListener('input', function () {
+      setFieldError($('fKey'), false);
+      var chips = $('keyChips').children;
+      for (var i = 0; i < chips.length; i++) chips[i].setAttribute('aria-pressed', String(chips[i].dataset.k === $('fKey').value.trim()));
+    });
+
+    $('sheet').addEventListener('click', function (e) {
+      if (e.target === $('sheet') && S.admin) closeSheet();
+    });
+
+    $('adminFab').onclick = adminGate;
+    $('adminExit').onclick = function () {
+      S.admin = false;
+      $('adminNote').classList.remove('show');
+      $('adminFab').hidden = false;
+      render();
+      toast('관리자 모드를 나왔어요');
+    };
+    $('resetAll').onclick = function () {
+      if (!S.admin) return;
+      if (!window.confirm('모든 신청을 비울까요? 되돌릴 수 없어요.')) return;
+      if (!window.confirm('정말 전부 지웁니다. 한 번 더 확인해 주세요.')) return;
+      var payload = {};
+      CFG.slots.forEach(function (s) { payload[s] = null; });
+      payload.meta = { clearedAt: new Date().toISOString() };
+      var done = false;
+      patchDoc(payload).then(function (ok) {
+        done = ok;
+        saveMine(null);
+        return refresh(false);
+      }).then(function () { toast(done ? '모든 신청을 비웠어요' : '초기화하지 못했어요'); });
+    };
+
+    document.addEventListener('visibilitychange', function () {
+      if (document.visibilityState === 'visible') refresh(false);
+    });
+    window.addEventListener('online', function () { refresh(false); });
+  }
+
+  function startPolling() {
+    if (S.polling) clearInterval(S.polling);
+    S.polling = setInterval(function () {
+      if (document.visibilityState === 'visible' && !S.busy) refresh(false);
+    }, CFG.pollMs);
+  }
+
+  function init() {
+    buildChips();
+    bind();
+    var isAdmin = /(^|[?&])admin=1?(&|$)/.test(location.search) || location.hash === '#admin';
+    if (isAdmin) $('adminFab').hidden = false;
+    refresh(true).then(function () {
+      // 주소에 admin=1 로 들어온 경우 바로 PIN 입력을 띄웁니다
+      if (isAdmin && !S.admin) adminGate();
+    });
+    startPolling();
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
+</script>
+</body>
+</html>
