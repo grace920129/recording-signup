@@ -38,6 +38,8 @@
     line-height:1.5;
     -webkit-font-smoothing:antialiased;
     padding-bottom:40px;
+    word-break:keep-all;
+    overflow-wrap:break-word;
   }
   body.locked{overflow:hidden}
   .wrap{max-width:640px;margin:0 auto;padding:0 14px}
@@ -203,9 +205,9 @@
   }
   .mybar[hidden]{display:none}
   .mybar .mb-ico{font-size:21px;line-height:1;flex:none}
-  .mybar .mb-txt{flex:1;min-width:0;font-size:13px;font-weight:700;color:var(--ink-soft);line-height:1.4}
+  .mybar .mb-txt{flex:1;min-width:0;font-size:13px;font-weight:700;color:var(--ink-soft);line-height:1.45}
   .mybar .mb-txt b{color:var(--brand)}
-  .mybar small{display:block;font-size:11.5px;color:var(--muted);font-weight:600}
+  .mybar small{display:block;font-size:11.5px;color:var(--muted);font-weight:600;margin-top:1px}
 
   /* ---------- status list ---------- */
   .count-bar{display:flex;align-items:center;gap:10px;margin:0 0 12px}
@@ -981,8 +983,8 @@
     if (!b) { bar.hidden = true; bar.innerHTML = ''; return; }
     bar.hidden = false;
     bar.innerHTML = '<span class="mb-ico" aria-hidden="true">🎫</span>' +
-      '<div class="mb-txt"><b>' + esc(b.name) + '</b> 님 <b>' + esc(S.me.slot) + '</b> 타임 신청 완료' +
-      '<small>확인하거나 수정하려면 눌러 주세요</small></div>' +
+      '<div class="mb-txt"><b>' + esc(b.name) + '</b> 님 · <b>' + esc(S.me.slot) + '</b> 타임' +
+      '<small>신청 완료 · 눌러서 확인 / 수정</small></div>' +
       '<button type="button" class="btn btn-mini" id="myBarBtn">확인 / 수정</button>';
     $('myBarBtn').onclick = function () { openConfirmView(S.me.slot, true); };
   }
