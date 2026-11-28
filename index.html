@@ -1785,10 +1785,7 @@
       $(id).addEventListener('input', function () { setFieldError(this, false); });
     });
 
-    $('myPageBtn').onclick = function () {
-      if (S.me && S.me.slot && S.bookings[S.me.slot]) openConfirmView(S.me.slot, true);
-      else openLookup();
-    };
+    $('myPageBtn').onclick = function () { openLookup(); };
 
     $('cvClose').onclick = function () { closeScreens(); render(); };
 
