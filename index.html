@@ -118,7 +118,7 @@
     -webkit-tap-highlight-color:transparent;
   }
   .slot .t{font-size:19px;font-weight:800;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
-  .slot .s{font-size:11px;font-weight:700;color:var(--ok)}
+  .slot .s{font-size:11px;font-weight:700;color:var(--ok);white-space:nowrap}
   .slot:active{transform:scale(.97)}
   .slot.is-taken{cursor:default;background:#f4f1f9;border-color:#e7e1f0;color:#a29bb2}
   .slot.is-taken .s{color:#9a92ac;font-weight:600}
@@ -138,6 +138,7 @@
   .slots-sm{grid-template-columns:repeat(3,1fr)}
   .slots-sm .slot{min-height:64px;padding:9px 4px}
   .slots-sm .slot .t{font-size:16px}
+  .slots-sm .slot .s{font-size:10px}
 
   /* ---------- form ---------- */
   .picked{
@@ -373,9 +374,9 @@
   /* ---------- admin ---------- */
   .admin-fab{
     position:fixed;right:14px;bottom:16px;z-index:70;
-    appearance:none;font:inherit;font-size:12px;font-weight:800;cursor:pointer;
-    color:#fff;background:#2b1650;border:none;border-radius:999px;padding:11px 15px;
-    box-shadow:0 10px 24px rgba(36,16,65,.28);opacity:.72;
+    appearance:none;font:inherit;font-size:11px;font-weight:800;cursor:pointer;
+    color:#fff;background:#2b1650;border:none;border-radius:999px;padding:9px 12px;
+    box-shadow:0 8px 18px rgba(36,16,65,.22);opacity:.5;
   }
   .admin-note{
     display:none;align-items:center;gap:8px;font-size:12px;font-weight:800;color:#7a3d0b;
@@ -453,7 +454,7 @@
         <div class="field">
           <label for="fLast4">전화번호 뒷 4자리<span class="req">*</span><span class="hint">본인 확인 · 수정할 때 써요</span></label>
           <input id="fLast4" name="last4" type="tel" inputmode="numeric" autocomplete="tel-national"
-                 placeholder="예) 0960" maxlength="4" pattern="[0-9]{4}">
+                 placeholder="예) 1234" maxlength="4" pattern="[0-9]{4}">
           <p class="err">숫자 4자리를 적어 주세요</p>
         </div>
         <div class="field">

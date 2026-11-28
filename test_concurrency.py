@@ -43,16 +43,22 @@ def reset_store():
         create({"meta": {"recreatedAt": time.strftime("%Y-%m-%dT%H:%M:%SZ")}})
         patch(payload)
 
-def book(client_id, slot, name, delay_after_patch=0.0):
-    """페이지와 같은 알고리즘: 읽기 -> 빈자리 확인 -> PATCH -> 한 박자 뒤 재확인 -> 3회 재시도"""
+def book(client_id, slot, name, last4=None, delay_after_patch=0.0):
+    """페이지와 같은 알고리즘: 읽기 -> 빈자리·중복(1인1타임) 확인 -> PATCH -> 한 박자 뒤 재확인 -> 3회 재시도"""
     mine = {"id": client_id, "name": name, "song": "테스트곡", "key": "원키",
-            "note": "", "at": time.strftime("%Y-%m-%dT%H:%M:%SZ")}
+            "note": "", "last4": last4 or "0000",
+            "at": time.strftime("%Y-%m-%dT%H:%M:%SZ")}
     for attempt in range(1, 4):
         try:
             doc = read_doc()
             cur = bookings(doc).get(slot)
             if cur and cur.get("id") != client_id:
                 return ("taken", cur.get("name"))
+            # 같은 전화번호 뒷 4자리로 이미 다른 타임에 신청했으면 차단 (페이지와 동일)
+            dup = [s for s, b in bookings(doc).items()
+                   if s != slot and str(b.get("last4", "")) == mine["last4"]]
+            if dup:
+                return ("duplicate", dup[0])
             if not patch({slot: mine}):
                 time.sleep(0.4 * attempt); continue
             time.sleep(0.45 + random.random() * 0.55 + delay_after_patch)
@@ -82,7 +88,8 @@ def run_pair(slot, n=2, delay=0.0):
     barrier = threading.Barrier(n)
     def worker(i):
         barrier.wait()
-        r = book("client-%d-%d" % (i, random.randint(1000,9999)), slot, "학생%d" % i, delay)
+        r = book("client-%d-%d" % (i, random.randint(1000,9999)), slot, "학생%d" % i,
+                 last4="10%02d" % i, delay_after_patch=delay)
         with lock: results.append(r)
     ts = [threading.Thread(target=worker, args=(i,)) for i in range(n)]
     for t in ts: t.start()
@@ -113,7 +120,7 @@ lock = threading.Lock()
 barrier = threading.Barrier(6)
 def worker2(i, slot):
     barrier.wait()
-    r = book("c2-%d" % i, slot, "동시%d" % i)
+    r = book("c2-%d" % i, slot, "동시%d" % i, last4="20%02d" % i)
     with lock: res.append((slot, r[0]))
 ts = [threading.Thread(target=worker2, args=(i, s)) for i, s in enumerate(slots6)]
 for t in ts: t.start()
@@ -133,8 +140,20 @@ print("  남은 타임:", sorted(bookings(read_doc()).keys()))
 print("  같은 타임 재신청:", book("new-client", slot, "새학생")[0])
 
 print("\n=== 테스트 5: 이미 찬 타임에 다른 사람 신청 시도")
-r = book("late-client", slots6[1], "늦은학생")
+r = book("late-client", slots6[1], "늦은학생", last4="9999")
 print("  결과:", r, "(taken 이어야 정상)")
+
+print("\n=== 테스트 6: 같은 전화번호 뒷 4자리로 다른 타임 신청 (1인 1타임 차단)")
+cur = bookings(read_doc())
+owner_slot = slots6[2]
+owner = cur[owner_slot]
+free = [s for s in SLOTS if s not in cur]
+r = book("second-client", free[0], owner["name"], last4=owner["last4"])
+print("  %s의 뒷자리 %s로 %s 신청:" % (owner_slot, owner["last4"], free[0]), r, "(duplicate 이어야 정상)")
+r2 = book("second-client2", free[1], owner["name"], last4="8888")
+print("  다른 뒷자리는:", r2, "(ok 이어야 정상)")
+if r2[0] == "ok":
+    print("  정리:", cancel(free[1]))
 
 print("\n=== 정리: 저장소 비우기")
 reset_store()
