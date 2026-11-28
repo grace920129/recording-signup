@@ -13,6 +13,7 @@
 </head>
 <body>
   <div class="cap">iPhone 폭 390px 미리보기</div>
-  <iframe src="./index.html" title="녹음 신청 페이지 모바일 미리보기"></iframe>
+  <iframe id="pv" src="about:blank" title="녹음 신청 페이지 모바일 미리보기"></iframe>
+  <script>document.getElementById('pv').src = './index.html?v=' + Date.now();</script>
 </body>
 </html>
