@@ -39,13 +39,14 @@
     -webkit-font-smoothing:antialiased;
     padding-bottom:40px;
   }
+  body.locked{overflow:hidden}
   .wrap{max-width:640px;margin:0 auto;padding:0 14px}
 
   /* ---------- hero ---------- */
   .hero{
     background:linear-gradient(158deg,#241041 0%,#3d1d75 46%,#6735bd 100%);
     color:#fff;
-    padding:28px 0 26px;
+    padding:28px 0 24px;
     border-radius:0 0 30px 30px;
     box-shadow:0 16px 40px rgba(43,22,80,.28);
     position:relative;
@@ -66,7 +67,7 @@
     text-shadow:0 2px 14px rgba(0,0,0,.18);
   }
   h1 .emoji{font-size:24px;vertical-align:2px;margin-right:2px}
-  .hero-sub{margin:9px 0 20px;font-size:14.5px;color:#e4d8ff;font-weight:600}
+  .hero-sub{margin:9px 0 16px;font-size:14.5px;color:#e4d8ff;font-weight:600}
   .facts{list-style:none;margin:0;padding:0;display:grid;gap:9px}
   .facts li{
     display:flex;align-items:center;gap:11px;
@@ -84,6 +85,13 @@
     background:linear-gradient(180deg,#ffe6ab,#f7cd72);
     border-radius:999px;padding:6px 13px;
   }
+  .btn-hero{
+    width:100%;margin-top:14px;padding:13px 14px;font-size:14.5px;font-weight:800;
+    color:#fff;background:rgba(255,255,255,.14);
+    border:1.4px solid rgba(255,255,255,.34);border-radius:14px;cursor:pointer;
+    backdrop-filter:blur(4px);appearance:none;font-family:inherit;
+  }
+  .btn-hero:active{background:rgba(255,255,255,.24)}
 
   /* ---------- cards ---------- */
   main{padding-top:16px}
@@ -116,15 +124,18 @@
     font-size:11px;font-weight:800;color:#6b6076;max-width:100%;
     overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
   }
-  .slot.is-selected{
+  .slot.is-selected, .slot.is-picked{
     border-color:var(--brand);background:var(--brand-soft);
     box-shadow:0 0 0 3.5px rgba(91,43,168,.15);
   }
-  .slot.is-selected .s{color:var(--brand)}
+  .slot.is-selected .s, .slot.is-picked .s{color:var(--brand)}
   .slot.is-mine{border-color:#19a97a;background:var(--ok-soft)}
   .slot.is-mine .s{color:var(--ok)}
   .slot .ad{font-size:10.5px;font-weight:800;color:#b23a2e;margin-top:2px}
   .slot:focus-visible{outline:3px solid rgba(91,43,168,.45);outline-offset:2px}
+  .slots-sm{grid-template-columns:repeat(3,1fr)}
+  .slots-sm .slot{min-height:64px;padding:9px 4px}
+  .slots-sm .slot .t{font-size:16px}
 
   /* ---------- form ---------- */
   .picked{
@@ -137,7 +148,7 @@
   .field > label{display:block;font-size:13px;font-weight:700;margin-bottom:6px;color:var(--ink-soft)}
   .field .req{color:#c2372a;margin-left:2px}
   .field .hint{font-size:11.5px;color:var(--muted);font-weight:500;margin-left:5px}
-  input[type=text],input[type=password],textarea{
+  input[type=text],input[type=tel],input[type=password],textarea{
     width:100%;font:inherit;font-size:16px;color:var(--ink);
     background:#fdfcff;border:1.6px solid var(--line);border-radius:13px;
     padding:12px 13px;outline:none;transition:border-color .15s, box-shadow .15s;
@@ -145,6 +156,7 @@
   textarea{min-height:84px;resize:vertical;line-height:1.55}
   input::placeholder,textarea::placeholder{color:#b5aec4}
   input:focus,textarea:focus{border-color:var(--brand);box-shadow:0 0 0 3.5px rgba(91,43,168,.13)}
+  #fLast4{letter-spacing:.22em;font-weight:800;font-variant-numeric:tabular-nums}
   .chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:8px}
   .chip{
     appearance:none;font:inherit;font-size:12.5px;font-weight:700;cursor:pointer;
@@ -156,6 +168,7 @@
   .err{display:none;color:#b3271b;font-size:12.5px;font-weight:700;margin-top:6px}
   .field.has-err input,.field.has-err textarea{border-color:#e0726a;background:#fff7f6}
   .field.has-err .err{display:block}
+  .note-inline{font-size:11.5px;color:var(--muted);text-align:center;margin:11px 0 0}
 
   .btn{
     appearance:none;font:inherit;font-weight:800;cursor:pointer;border:none;border-radius:15px;
@@ -169,16 +182,33 @@
   }
   .btn-primary:disabled{opacity:.62;box-shadow:none;cursor:default}
   .btn-ghost{
-    padding:11px 15px;font-size:13.5px;color:#4b2f83;background:#f4f0fc;
+    padding:12px 15px;font-size:14px;color:#4b2f83;background:#f4f0fc;
     border:1.3px solid #e3d9f8;
   }
+  .btn-soft{
+    width:100%;padding:14px;font-size:14.5px;color:#4b2f83;background:#f4f0fc;
+    border:1.4px solid #e3d9f8;border-radius:15px;
+  }
   .btn-danger{background:#fdecea;color:#a52b1f;border:1.3px solid #f6d3ce}
-  .note-inline{font-size:11.5px;color:var(--muted);text-align:center;margin:11px 0 0}
+  .btn-mini{
+    padding:9px 12px;font-size:12px;font-weight:800;color:#fff;
+    background:linear-gradient(135deg,#55239f,#7c46d8);border-radius:11px;white-space:nowrap;
+  }
+
+  /* ---------- my bar ---------- */
+  .mybar{
+    display:flex;align-items:center;gap:11px;margin:14px 0 0;
+    background:#fff;border:1.6px solid #cbb6f2;border-radius:16px;
+    padding:11px 13px;box-shadow:var(--shadow);
+  }
+  .mybar[hidden]{display:none}
+  .mybar .mb-ico{font-size:21px;line-height:1;flex:none}
+  .mybar .mb-txt{flex:1;min-width:0;font-size:13px;font-weight:700;color:var(--ink-soft);line-height:1.4}
+  .mybar .mb-txt b{color:var(--brand)}
+  .mybar small{display:block;font-size:11.5px;color:var(--muted);font-weight:600}
 
   /* ---------- status list ---------- */
-  .count-bar{
-    display:flex;align-items:center;gap:10px;margin:0 0 12px;
-  }
+  .count-bar{display:flex;align-items:center;gap:10px;margin:0 0 12px}
   .bar{flex:1;height:7px;border-radius:99px;background:#efeaf8;overflow:hidden}
   .bar > i{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,#7c46d8,#b58cf5);transition:width .35s ease}
   .count-bar span{display:none}
@@ -212,7 +242,7 @@
 
   /* ---------- banner & toast ---------- */
   .banner{
-    display:none;margin:0 0 12px;border-radius:14px;padding:11px 14px;font-size:13px;font-weight:700;
+    display:none;margin:12px 0 0;border-radius:14px;padding:11px 14px;font-size:13px;font-weight:700;
     background:var(--warn-soft);color:var(--warn);border:1px solid #ffdabf;
   }
   .banner.show{display:block}
@@ -224,42 +254,119 @@
     position:fixed;left:50%;bottom:22px;transform:translate(-50%,18px);
     background:#241041;color:#fff;font-size:13.5px;font-weight:700;
     padding:12px 18px;border-radius:999px;box-shadow:0 12px 30px rgba(36,16,65,.34);
-    opacity:0;pointer-events:none;transition:opacity .22s, transform .22s;z-index:80;max-width:88vw;text-align:center;
+    opacity:0;pointer-events:none;transition:opacity .22s, transform .22s;z-index:120;max-width:88vw;text-align:center;
   }
   .toast.show{opacity:1;transform:translate(-50%,0)}
 
   /* ---------- sheet / modal ---------- */
   .sheet{
-    position:fixed;inset:0;z-index:90;display:none;place-items:center;padding:18px;
-    background:rgba(24,12,44,.48);backdrop-filter:blur(3px);
+    position:fixed;inset:0;z-index:100;display:none;place-items:center;padding:18px;
+    background:rgba(24,12,44,.48);backdrop-filter:blur(3px);overflow-y:auto;
   }
   .sheet.open{display:grid}
   .sheet-card{
-    background:#fff;border-radius:24px;padding:26px 22px 22px;width:100%;max-width:400px;
+    background:#fff;border-radius:24px;padding:24px 20px 20px;width:100%;max-width:400px;
     text-align:center;box-shadow:0 24px 60px rgba(24,12,44,.34);animation:pop .26s cubic-bezier(.2,.9,.3,1.2);
+    max-height:92vh;overflow-y:auto;
   }
+  .sheet-card.wide{max-width:440px}
   @keyframes pop{from{transform:scale(.93);opacity:0}to{transform:scale(1);opacity:1}}
-  .sheet-card h2{margin:0 0 6px;font-size:20px;font-weight:800;letter-spacing:-.02em}
+  .sheet-card h2{margin:0 0 6px;font-size:19px;font-weight:800;letter-spacing:-.02em;line-height:1.35}
   .sheet-card p{margin:0;font-size:13.5px;color:var(--ink-soft)}
   .check{
     width:62px;height:62px;border-radius:50%;margin:0 auto 14px;display:grid;place-items:center;
     background:linear-gradient(135deg,#d6f8ea,#a6f0d3);color:#0d7a58;font-size:31px;font-weight:800;
     box-shadow:0 10px 22px rgba(18,128,92,.22);
   }
+  .wide-ico{
+    width:56px;height:56px;border-radius:18px;margin:0 auto 12px;display:grid;place-items:center;
+    background:var(--brand-soft);font-size:27px;line-height:1;
+  }
   .recap{
-    margin:16px 0 20px;text-align:left;background:#faf8fe;border:1px solid #f0ebf8;
+    margin:16px 0 18px;text-align:left;background:#faf8fe;border:1px solid #f0ebf8;
     border-radius:15px;padding:4px 14px;
   }
   .recap div{display:flex;gap:10px;padding:9px 0;border-bottom:1px solid #f1ecf8;font-size:13.5px}
   .recap div:last-child{border-bottom:none}
-  .recap dt{width:64px;flex:none;color:var(--muted);font-weight:700;font-size:12.5px}
-  .recap dd{margin:0;font-weight:700;word-break:break-word}
-  .sheet-card .btn{width:100%}
+  .recap dt{width:66px;flex:none;color:var(--muted);font-weight:700;font-size:12.5px}
+  .recap dd{margin:0;font-weight:700;word-break:break-word;white-space:pre-wrap}
+  .sheet-actions{display:grid;gap:8px;margin-top:16px}
+  .sheet-actions .btn{width:100%}
   .pin-input{
     width:100%;font:inherit;font-size:24px;letter-spacing:.42em;text-align:center;font-weight:800;
     border:1.6px solid var(--line);border-radius:14px;padding:14px 10px;margin:16px 0 6px;background:#fdfcff;outline:none;
+    font-variant-numeric:tabular-nums;
   }
   .pin-input:focus{border-color:var(--brand);box-shadow:0 0 0 3.5px rgba(91,43,168,.13)}
+  .sheet .err{text-align:left}
+
+  /* ---------- full screens (확정 / 수정) ---------- */
+  .screen{
+    position:fixed;inset:0;z-index:95;background:var(--bg);overflow-y:auto;
+    -webkit-overflow-scrolling:touch;display:none;
+  }
+  .screen.open{display:block}
+  .screen-inner{max-width:640px;margin:0 auto;padding:16px 14px 44px}
+  .screen-top{display:flex;align-items:center;gap:8px;margin-bottom:14px}
+  .screen-top .back{
+    appearance:none;font:inherit;font-size:13.5px;font-weight:800;cursor:pointer;
+    color:#4b2f83;background:#fff;border:1.3px solid #e3d9f8;border-radius:11px;padding:9px 12px;
+    display:inline-flex;align-items:center;gap:5px;flex:none;
+  }
+  .screen-top h2{margin:0;font-size:16px;font-weight:800;flex:1;text-align:right;color:var(--muted)}
+
+  /* ticket */
+  .ticket{border-radius:26px;overflow:hidden;box-shadow:0 18px 44px rgba(43,22,80,.24);background:#fff}
+  .ticket-top{
+    background:linear-gradient(158deg,#241041 0%,#3d1d75 52%,#6b3ec9 100%);
+    color:#fff;padding:24px 22px 24px;position:relative;overflow:hidden;
+  }
+  .ticket-top::after{
+    content:"";position:absolute;inset:auto -70px -120px auto;width:230px;height:230px;
+    background:radial-gradient(circle at center, rgba(242,181,68,.24), rgba(242,181,68,0) 70%);
+  }
+  .tk-eyebrow{margin:0 0 10px;font-size:10.5px;letter-spacing:.18em;font-weight:800;color:#c9b4f5}
+  .tk-badge{
+    display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:800;
+    background:linear-gradient(180deg,#ffe6ab,#f7cd72);color:#4a2d00;border-radius:999px;padding:4px 11px;margin-bottom:11px;
+  }
+  .tk-title{margin:0;font-size:22px;line-height:1.32;font-weight:800;letter-spacing:-.02em;position:relative;z-index:1}
+  .tk-when{margin:12px 0 0;font-size:14px;color:#e2d6fb;font-weight:700}
+  .tk-when b{font-size:24px;color:#fff;font-variant-numeric:tabular-nums;letter-spacing:-.02em;margin-right:2px}
+  .tk-when span{color:#c5b1ee;font-weight:600}
+  .ticket-perf{border-top:2px dashed #e8e2f0;margin:0 16px;position:relative;background:#fff}
+  .ticket-perf::before,.ticket-perf::after{
+    content:"";position:absolute;top:-11px;width:22px;height:22px;border-radius:50%;background:var(--bg);
+  }
+  .ticket-perf::before{left:-27px}
+  .ticket-perf::after{right:-27px}
+  .ticket-body{padding:16px 20px 20px;background:#fff}
+  .tk-rows{margin:0;padding:0}
+  .tk-rows div{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid #f4f0fa}
+  .tk-rows div:last-child{border-bottom:none}
+  .tk-rows dt{width:86px;flex:none;color:var(--muted);font-size:12.5px;font-weight:700;padding-top:2px}
+  .tk-rows dd{margin:0;font-weight:700;font-size:14px;word-break:break-word;white-space:pre-wrap;flex:1}
+  .tk-empty{color:#c4bfd0;font-weight:600}
+  .tk-note{margin:12px 0 0;font-size:11.5px;color:#a49db3;text-align:center}
+
+  .cv-actions{display:grid;gap:9px;margin-top:16px}
+  .cv-next{margin:14px 0 0;text-align:center;font-size:12.5px;color:var(--muted);line-height:1.7}
+
+  /* edit screen */
+  .edit-note{
+    display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:800;color:#0d7a58;
+    background:var(--ok-soft);border:1px solid #c8efdf;border-radius:12px;padding:9px 12px;margin:0 0 14px;
+  }
+  .edit-cur{
+    display:flex;align-items:center;gap:8px;margin:0 0 12px;padding:10px 13px;
+    background:var(--brand-soft);border:1px dashed #cbb6f2;border-radius:13px;
+    font-size:13.5px;font-weight:700;color:#4a2d80;
+  }
+  .edit-cur b{font-size:15px;color:var(--brand);font-variant-numeric:tabular-nums}
+
+  /* image preview */
+  #imgPreview{width:100%;display:block;border-radius:14px;box-shadow:0 12px 28px rgba(24,12,44,.25);background:#fff}
+  .img-hint{font-size:12.5px;color:var(--ink-soft);margin:12px 0 0;line-height:1.6}
 
   /* ---------- admin ---------- */
   .admin-fab{
@@ -270,7 +377,7 @@
   }
   .admin-note{
     display:none;align-items:center;gap:8px;font-size:12px;font-weight:800;color:#7a3d0b;
-    background:#fff4e0;border:1px solid #ffe0ae;border-radius:12px;padding:8px 12px;margin-bottom:12px;
+    background:#fff4e0;border:1px solid #ffe0ae;border-radius:12px;padding:8px 12px;margin:12px 0 0;
   }
   .admin-note.show{display:flex}
   .admin-note .btn{margin-left:auto;font-size:11.5px;padding:5px 10px}
@@ -284,6 +391,7 @@
     .slots{gap:11px}
     .slot{min-height:84px}
     .slot .t{font-size:21px}
+    .tk-title{font-size:25px}
   }
 </style>
 </head>
@@ -309,16 +417,18 @@
         <div><b>그레이스 음악연습실 남산점</b><small>대구 남구 남산 · 30분씩 한 분씩</small></div>
       </li>
     </ul>
+    <button type="button" class="btn-hero" id="myPageBtn">🎫 내 예약 확인 / 수정</button>
     <span class="pill">🎧 한 타임에 한 분씩, 선착순</span>
   </div>
 </header>
 
 <div class="wrap">
   <main>
+    <div id="myBar" class="mybar" hidden></div>
     <div id="banner" class="banner" role="status"></div>
     <div id="adminNote" class="admin-note">🔐 관리자 모드 <button type="button" class="btn btn-ghost" id="adminExit">나가기</button></div>
 
-    <section class="card" aria-labelledby="slotTitle">
+    <section class="card" aria-labelledby="slotTitle" style="margin-top:14px">
       <div class="card-head">
         <h2 id="slotTitle">시간 선택 <span class="n" id="leftCount"></span></h2>
         <span class="meta" id="syncMeta">불러오는 중…</span>
@@ -333,17 +443,21 @@
       </div>
       <p class="picked" id="pickedLine">위에서 원하는 시간을 먼저 골라 주세요</p>
       <form id="form" novalidate>
-        <div class="grid2">
-          <div class="field">
-            <label for="fName">이름<span class="req">*</span></label>
-            <input id="fName" name="name" type="text" autocomplete="name" placeholder="예) 김하늘" maxlength="20">
-            <p class="err">이름을 적어 주세요</p>
-          </div>
-          <div class="field">
-            <label for="fSong">부르는 곡<span class="req">*</span></label>
-            <input id="fSong" name="song" type="text" placeholder="예) 이등병의 편지" maxlength="60">
-            <p class="err">곡명을 적어 주세요</p>
-          </div>
+        <div class="field">
+          <label for="fName">이름<span class="req">*</span></label>
+          <input id="fName" name="name" type="text" autocomplete="name" placeholder="예) 김하늘" maxlength="20">
+          <p class="err">이름을 적어 주세요</p>
+        </div>
+        <div class="field">
+          <label for="fLast4">전화번호 뒷 4자리<span class="req">*</span><span class="hint">본인 확인 · 수정할 때 써요</span></label>
+          <input id="fLast4" name="last4" type="tel" inputmode="numeric" autocomplete="tel-national"
+                 placeholder="예) 0960" maxlength="4" pattern="[0-9]{4}">
+          <p class="err">숫자 4자리를 적어 주세요</p>
+        </div>
+        <div class="field">
+          <label for="fSong">부르는 곡<span class="req">*</span></label>
+          <input id="fSong" name="song" type="text" placeholder="예) 이등병의 편지" maxlength="60">
+          <p class="err">곡명을 적어 주세요</p>
         </div>
         <div class="field">
           <label for="fKey">키 <span class="hint">조성</span><span class="req">*</span></label>
@@ -356,7 +470,7 @@
           <textarea id="fNote" name="note" maxlength="300" placeholder="예) 2절부터 녹음 / 반주는 MR로 / 키 -2키로 낮춰 주세요 / 메트로놈 넣어 주세요"></textarea>
         </div>
         <button type="submit" class="btn btn-primary" id="submitBtn">신청하기</button>
-        <p class="note-inline">신청하면 바로 저장되고, 다른 분 화면에도 바로 반영돼요.</p>
+        <p class="note-inline">신청 전에 한 번 더 확인 창이 떠요. 확정 후에도 '내 예약 확인 / 수정'에서 고칠 수 있어요.</p>
       </form>
     </section>
 
@@ -374,12 +488,60 @@
 
     <footer>
       대구 그레이스 음악연습실 · 2026년 12월 20일(일) 레슨 녹음<br>
-      신청을 바꾸거나 취소할 일이 있으면 선생님께 알려 주세요.
+      신청을 바꾸거나 취소할 일이 있으면 '내 예약 확인 / 수정'을 눌러 주세요.
     </footer>
   </main>
 </div>
 
 <button type="button" class="admin-fab" id="adminFab">관리자</button>
+
+<!-- ============ 예약 확정 화면 ============ -->
+<div class="screen" id="confirmView" role="dialog" aria-modal="true" aria-label="예약 확정">
+  <div class="screen-inner">
+    <div class="screen-top">
+      <button type="button" class="back" id="cvClose">← 신청 페이지로</button>
+      <h2>예약 확정</h2>
+    </div>
+    <div id="cvBody"></div>
+    <div class="cv-actions">
+      <button type="button" class="btn btn-soft" id="cvCopy">📋 예약 내역 복사</button>
+      <button type="button" class="btn btn-soft" id="cvImage">🖼 확정증 이미지 저장</button>
+      <button type="button" class="btn btn-primary" id="cvEdit">✏️ 예약 수정</button>
+    </div>
+    <p class="cv-next">이 링크를 나중에 다시 열어도<br>맨 위 '🎫 내 예약 확인 / 수정'에서 전화번호 뒷 4자리로 확인할 수 있어요.</p>
+  </div>
+</div>
+
+<!-- ============ 예약 수정 화면 ============ -->
+<div class="screen" id="editView" role="dialog" aria-modal="true" aria-label="예약 수정">
+  <div class="screen-inner">
+    <div class="screen-top">
+      <button type="button" class="back" id="evBack">← 확정 화면으로</button>
+      <h2>예약 수정</h2>
+    </div>
+    <div class="card" style="margin:0">
+      <p class="edit-note">🔒 전화번호 뒷 4자리 확인 완료</p>
+      <p class="edit-cur">지금 예약 <b id="evCurSlot"></b> 타임</p>
+      <div class="field">
+        <label for="eSong">부르는 곡<span class="req">*</span></label>
+        <input id="eSong" type="text" maxlength="60">
+        <p class="err">곡명을 적어 주세요</p>
+      </div>
+      <div class="field">
+        <label for="eNote">추가 변경 사항 <span class="hint">선택</span></label>
+        <textarea id="eNote" maxlength="300"></textarea>
+      </div>
+      <div class="field">
+        <label>시간 변경 <span class="hint">비어 있는 시간으로 옮길 수 있어요</span></label>
+        <div class="slots slots-sm" id="eSlots" role="group" aria-label="변경할 시간 선택"></div>
+        <p class="err" id="eSlotErr">이미 다른 분이 신청한 시간이에요</p>
+      </div>
+      <button type="button" class="btn btn-primary" id="eSave">수정 저장</button>
+      <button type="button" class="btn btn-ghost" id="eCancel" style="width:100%;margin-top:8px">취소</button>
+      <p class="note-inline">시간을 옮기면 새 시간을 먼저 잡고 원래 시간을 비워요.<br>다른 분과 겹치면 저장되지 않아요.</p>
+    </div>
+  </div>
+</div>
 
 <div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
   <div class="sheet-card" id="sheetCard"></div>
@@ -400,19 +562,28 @@
     // 관리자 PIN은 해시로만 비교합니다 (PIN 평문은 페이지에 없습니다)
     pinHash: '1afc3bfe6e0dc665bf82245e8bd2b4b207b1ef9c4789c675b48d271e78d0000d',
     pinSalt: 'grace-rec-2026',
-    pollMs: 12000
+    pollMs: 12000,
+    place: '그레이스 음악연습실 남산점',
+    dateLabel: '2026년 12월 20일 일요일',
+    dateShort: '12월 20일(일)',
+    link: 'https://grace920129.github.io/recording-signup/'
   };
 
   var S = {
     bookings: {},
     selected: null,
     myId: null,
-    myBooking: null,
+    me: null,          // { slot, last4, name, id } — 이 기기에서 확인된 내 예약
     admin: false,
     busy: false,
     lastSync: null,
     loaded: false,
-    polling: null
+    polling: null,
+    pending: null,     // 확인 팝업에서 기다리는 신청 내용
+    current: null,     // 예약 확정 화면에 보여 줄 { slot, b }
+    editOld: null,
+    editSlot: null,
+    sheetClose: false  // 시트 바깥을 눌렀을 때 닫을지
   };
 
   /* ------------------------------------------------------------------ *
@@ -443,7 +614,24 @@
     b.innerHTML = esc(msg) + (showRetry ? ' <button type="button" id="bannerRetry">다시 시도</button>' : '');
     if (showRetry) $('bannerRetry').onclick = function () { banner(''); refresh(true); };
   }
-  function slotIndex(s) { return CFG.slots.indexOf(s); }
+  function readJSON(k) {
+    try { var v = localStorage.getItem(k); return v ? JSON.parse(v) : null; } catch (e) { return null; }
+  }
+  function writeJSON(k, v) {
+    try {
+      if (v == null) localStorage.removeItem(k);
+      else localStorage.setItem(k, JSON.stringify(v));
+    } catch (e) {}
+  }
+  function addMin(hhmm, m) {
+    var p = hhmm.split(':');
+    var total = parseInt(p[0], 10) * 60 + parseInt(p[1], 10) + m;
+    var h = Math.floor(total / 60), mi = total % 60;
+    return String(h).padStart(2, '0') + ':' + String(mi).padStart(2, '0');
+  }
+  function lockBody(on) {
+    document.body.classList.toggle('locked', !!on);
+  }
   function sortedBookings() {
     var out = [];
     for (var i = 0; i < CFG.slots.length; i++) {
@@ -452,24 +640,26 @@
     }
     return out;
   }
+  function isMine(b) {
+    if (!b) return false;
+    if (b.id && b.id === S.myId) return true;
+    if (S.me && S.me.last4 && String(b.last4 || '') === String(S.me.last4)) return true;
+    return false;
+  }
 
   /* ------------------------------------------------------------------ *
-   * 세션 정체성
+   * 세션 정체성 / 내 예약 기억
    * ------------------------------------------------------------------ */
   try {
-    S.myId = sessionStorage.getItem('rec.myId');
-    if (!S.myId) { S.myId = rid(); sessionStorage.setItem('rec.myId', S.myId); }
-    S.myBooking = JSON.parse(sessionStorage.getItem('rec.myBooking') || 'null');
-  } catch (e) {
-    S.myId = rid();
-    S.myBooking = null;
-  }
-  function saveMine(v) {
-    S.myBooking = v;
-    try {
-      if (v) sessionStorage.setItem('rec.myBooking', JSON.stringify(v));
-      else sessionStorage.removeItem('rec.myBooking');
-    } catch (e) {}
+    S.myId = localStorage.getItem('rec.myId');
+    if (!S.myId) { S.myId = rid(); localStorage.setItem('rec.myId', S.myId); }
+  } catch (e) { S.myId = rid(); }
+  S.me = readJSON('rec.me.v1');
+
+  function saveMe(v) {
+    S.me = v;
+    writeJSON('rec.me.v1', v);
+    renderMyBar();
   }
 
   /* ------------------------------------------------------------------ *
@@ -570,7 +760,35 @@
   }
 
   /* ------------------------------------------------------------------ *
-   * 신청 / 취소
+   * 중복(1인 1타임) 검사
+   * ------------------------------------------------------------------ */
+  function findDup(last4, exceptSlot, bookings) {
+    var src = bookings || S.bookings;
+    var l4 = String(last4 || '');
+    if (!l4) return null;
+    for (var i = 0; i < CFG.slots.length; i++) {
+      var s = CFG.slots[i];
+      if (s === exceptSlot) continue;
+      var b = src[s];
+      if (b && String(b.last4 || '') === l4) return { slot: s, b: b };
+    }
+    return null;
+  }
+  function findByLast4(last4, bookings) {
+    var src = bookings || S.bookings;
+    var l4 = String(last4 || ''), out = [];
+    for (var i = 0; i < CFG.slots.length; i++) {
+      var s = CFG.slots[i], b = src[s];
+      if (b && String(b.last4 || '') === l4) out.push({ slot: s, b: b });
+    }
+    return out;
+  }
+  function dupMessage(slot) {
+    return '이미 ' + slot + ' 타임으로 신청된 내역이 있어요. 상단 \'내 예약 확인/수정\'에서 확인하거나 수정해 주세요.';
+  }
+
+  /* ------------------------------------------------------------------ *
+   * 신청
    * ------------------------------------------------------------------ */
   function book(slot, values) {
     var mine = {
@@ -579,6 +797,7 @@
       song: values.song,
       key: values.key,
       note: values.note || '',
+      last4: String(values.last4),
       at: new Date().toISOString()
     };
     var attempt = 0;
@@ -586,8 +805,11 @@
     function step() {
       attempt++;
       return readDoc().then(function (doc) {
-        var cur = parseBookings(doc)[slot];
-        if (cur && cur.id !== S.myId) return { ok: false, taken: cur };
+        var cur = parseBookings(doc);
+        var holder = cur[slot];
+        if (holder && holder.id !== S.myId) return { ok: false, taken: holder };
+        var dup = findDup(mine.last4, slot, cur);
+        if (dup) { applyDoc(doc); return { ok: false, dup: dup.slot }; }
         var payload = {};
         payload[slot] = mine;
         return patchDoc(payload).then(function (ok) {
@@ -596,9 +818,9 @@
           return sleep(450 + Math.random() * 550)
             .then(function () { return readDoc(); })
             .then(function (doc2) {
-              var holder = parseBookings(doc2)[slot];
-              if (holder && holder.id === S.myId) { applyDoc(doc2); return { ok: true, booking: mine }; }
-              if (holder) { applyDoc(doc2); return { ok: false, taken: holder }; }
+              var holder2 = parseBookings(doc2)[slot];
+              if (holder2 && holder2.id === S.myId) { applyDoc(doc2); return { ok: true, booking: mine }; }
+              if (holder2) { applyDoc(doc2); return { ok: false, taken: holder2 }; }
               throw new Error('verify-missing');
             });
         });
@@ -607,6 +829,31 @@
         if (err && err.message === STORE_MISSING) return { ok: false, error: 'store' };
         return { ok: false, error: 'network' };
       });
+    }
+    return step();
+  }
+
+  function updateBooking(slot, patch) {
+    var attempt = 0;
+    function step() {
+      attempt++;
+      var payload = {};
+      payload[slot] = patch;
+      return patchDoc(payload)
+        .then(function (ok) {
+          if (!ok) throw new Error('write-failed');
+          return sleep(350 + Math.random() * 300).then(function () { return readDoc(); })
+            .then(function (doc) {
+              var holder = parseBookings(doc)[slot];
+              applyDoc(doc);
+              if (holder && holder.id === S.myId) return true;
+              throw new Error('verify-failed');
+            });
+        })
+        .catch(function () {
+          if (attempt < 3) return sleep(400 * attempt).then(step);
+          return false;
+        });
     }
     return step();
   }
@@ -642,6 +889,7 @@
     renderSlots();
     renderStatus();
     renderSyncMeta();
+    renderMyBar();
   }
 
   function renderSyncMeta() {
@@ -657,7 +905,7 @@
     var left = 0;
     for (var i = 0; i < CFG.slots.length; i++) {
       var slot = CFG.slots[i], b = S.bookings[slot];
-      var mine = !!(b && b.id === S.myId);
+      var mine = isMine(b);
       if (!b) left++;
       var btn = document.createElement('button');
       btn.type = 'button';
@@ -685,7 +933,6 @@
     } else if (picked && S.bookings[picked]) {
       $('pickedLine').textContent = '이미 신청된 시간이에요. 다른 시간을 골라 주세요';
       S.selected = null;
-      $('formCard').classList.remove('has-pick');
       renderSlots();
       return;
     } else {
@@ -709,7 +956,7 @@
     var html = '';
     for (var i = 0; i < list.length; i++) {
       var slot = list[i].slot, b = list[i].b;
-      var mine = b.id === S.myId;
+      var mine = isMine(b);
       html += '<li class="row' + (mine ? ' is-mine' : '') + '">' +
         '<span class="t">' + esc(slot) + '</span>' +
         '<div class="who">' + esc(b.name) + '<span class="song">' + esc(b.song) + '</span></div>' +
@@ -717,7 +964,9 @@
           ? '<div class="acts"><button type="button" class="mini" data-cancel="' + esc(slot) + '">취소</button></div>'
           : '<span class="key">' + esc(b.key) + '</span>') +
         '<p class="note' + (!b.note && !S.admin ? ' empty' : '') + '">' +
-          (S.admin ? '키 ' + esc(b.key) + (b.note ? ' · ' + esc(b.note) : '') : (b.note ? esc(b.note) : '요청사항 없음')) +
+          (S.admin
+            ? '키 ' + esc(b.key) + ' · 뒷자리 ' + esc(b.last4 || '—') + (b.note ? ' · ' + esc(b.note) : '')
+            : (b.note ? esc(b.note) : '요청사항 없음')) +
         '</p>' +
         '</li>';
     }
@@ -725,15 +974,431 @@
     $('toolbar').classList.toggle('show', S.admin);
   }
 
+  function renderMyBar() {
+    var bar = $('myBar');
+    if (!S.me || !S.me.slot) { bar.hidden = true; bar.innerHTML = ''; return; }
+    var b = S.bookings[S.me.slot];
+    if (!b) { bar.hidden = true; bar.innerHTML = ''; return; }
+    bar.hidden = false;
+    bar.innerHTML = '<span class="mb-ico" aria-hidden="true">🎫</span>' +
+      '<div class="mb-txt"><b>' + esc(b.name) + '</b> 님 <b>' + esc(S.me.slot) + '</b> 타임 신청 완료' +
+      '<small>확인하거나 수정하려면 눌러 주세요</small></div>' +
+      '<button type="button" class="btn btn-mini" id="myBarBtn">확인 / 수정</button>';
+    $('myBarBtn').onclick = function () { openConfirmView(S.me.slot, true); };
+  }
+
   function checkMineSurvived() {
-    if (!S.myBooking) return;
-    var cur = S.bookings[S.myBooking.slot];
-    if (cur && cur.id !== S.myId) {
-      banner('⏰ ' + S.myBooking.slot + ' 타임이 방금 다른 분 신청으로 마감됐어요. 죄송하지만 다른 시간을 다시 골라 주세요.', false);
-      saveMine(null);
-    } else if (!cur) {
-      saveMine(null);
+    if (!S.me || !S.me.slot) return;
+    var cur = S.bookings[S.me.slot];
+    if (!cur || (cur.last4 && String(cur.last4) !== String(S.me.last4))) {
+      saveMe(null);
+      if ($('confirmView').classList.contains('open') && S.current) {
+        closeScreens();
+        toast('예약이 취소되었어요. 다시 신청해 주세요', 3600);
+      }
     }
+  }
+
+  /* ------------------------------------------------------------------ *
+   * 예약 확정 화면
+   * ------------------------------------------------------------------ */
+  function rowHTML(label, value, raw) {
+    return '<div><dt>' + esc(label) + '</dt><dd>' + (raw ? value : esc(value)) + '</dd></div>';
+  }
+
+  function ticketHTML(slot, b) {
+    var note = b.note ? esc(b.note) : '<span class="tk-empty">없음</span>';
+    return '<div class="ticket">' +
+      '<div class="ticket-top">' +
+        '<p class="tk-eyebrow">RECORDING RESERVATION</p>' +
+        '<span class="tk-badge">✓ 예약 확정</span>' +
+        '<h2 class="tk-title">' + esc(b.name) + ' 님,<br>예약이 확정되었어요</h2>' +
+        '<p class="tk-when"><b>' + esc(slot) + '</b> ~ ' + esc(addMin(slot, 30)) +
+          ' <span>· ' + esc(CFG.dateShort) + '</span></p>' +
+      '</div>' +
+      '<div class="ticket-perf"></div>' +
+      '<div class="ticket-body">' +
+        '<dl class="tk-rows">' +
+          rowHTML('장소', CFG.place) +
+          rowHTML('날짜', CFG.dateLabel) +
+          rowHTML('시간', slot + ' ~ ' + addMin(slot, 30) + ' (30분)') +
+          rowHTML('이름', b.name) +
+          rowHTML('곡', b.song) +
+          rowHTML('키', b.key || '-') +
+          rowHTML('추가 변경', note, true) +
+          rowHTML('전화 뒷자리', '**** ' + (b.last4 || '')) +
+        '</dl>' +
+        '<p class="tk-note">이 화면을 캡처해 두면 나중에 확인할 때 편해요.</p>' +
+      '</div>' +
+    '</div>';
+  }
+
+  function openConfirmView(slot, remember) {
+    var b = S.bookings[slot];
+    if (!b) { toast('예약 정보를 찾지 못했어요. 잠시 후 다시 시도해 주세요'); return; }
+    S.current = { slot: slot, b: b };
+    if (remember !== false) {
+      saveMe({ slot: slot, last4: String(b.last4 || ''), name: b.name, id: b.id });
+    }
+    $('cvBody').innerHTML = ticketHTML(slot, b);
+    $('confirmView').classList.add('open');
+    lockBody(true);
+    window.scrollTo(0, 0);
+  }
+
+  function closeScreens() {
+    $('confirmView').classList.remove('open');
+    $('editView').classList.remove('open');
+    lockBody(false);
+  }
+
+  function bookingText(slot, b) {
+    return [
+      '🎤 대구 그레이스 음악연습실 · 레슨 녹음 예약 확정',
+      CFG.dateLabel + ' ' + slot + '~' + addMin(slot, 30),
+      '장소: ' + CFG.place,
+      '이름: ' + b.name,
+      '곡: ' + b.song,
+      '키: ' + (b.key || '-'),
+      '추가 변경: ' + (b.note || '없음'),
+      '전화 뒷자리: ' + (b.last4 || '-'),
+      '',
+      '확인·수정: ' + CFG.link + ' → 내 예약 확인 / 수정'
+    ].join('\n');
+  }
+
+  function copyText(text) {
+    if (navigator.clipboard && window.isSecureContext) {
+      return navigator.clipboard.writeText(text).then(function () { return true; }, function () { return legacyCopy(text); });
+    }
+    return Promise.resolve(legacyCopy(text));
+  }
+  function legacyCopy(text) {
+    try {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.setAttribute('readonly', '');
+      ta.style.position = 'fixed';
+      ta.style.top = '-1000px';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, ta.value.length);
+      var ok = document.execCommand('copy');
+      document.body.removeChild(ta);
+      return !!ok;
+    } catch (e) { return false; }
+  }
+
+  /* ------------------------------------------------------------------ *
+   * 확정증 이미지 (Canvas → PNG)
+   * ------------------------------------------------------------------ */
+  var CARD_FONT = '"Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR","NanumGothic",sans-serif';
+
+  function roundRect(c, x, y, w, h, r) {
+    c.beginPath();
+    c.moveTo(x + r, y);
+    c.arcTo(x + w, y, x + w, y + h, r);
+    c.arcTo(x + w, y + h, x, y + h, r);
+    c.arcTo(x, y + h, x, y, r);
+    c.arcTo(x, y, x + w, y, r);
+    c.closePath();
+  }
+
+  function wrapText(c, text, x, y, maxW, lh, maxLines) {
+    var words = String(text).replace(/\r/g, '').split(/\n/);
+    var lines = [];
+    words.forEach(function (para) {
+      var chunks = para.split(/\s+/);
+      var line = '';
+      chunks.forEach(function (w) {
+        var t = line ? line + ' ' + w : w;
+        if (c.measureText(t).width > maxW && line) { lines.push(line); line = w; }
+        else line = t;
+      });
+      if (line) lines.push(line);
+    });
+    if (!lines.length) lines.push('');
+    if (maxLines && lines.length > maxLines) {
+      lines = lines.slice(0, maxLines);
+      lines[maxLines - 1] = lines[maxLines - 1].replace(/.$/, '…');
+    }
+    lines.forEach(function (l, i) { c.fillText(l, x, y + i * lh); });
+    return lines.length;
+  }
+
+  function drawCard(slot, b) {
+    var W = 1080, H = 1440;
+    var cv = document.createElement('canvas');
+    cv.width = W; cv.height = H;
+    var c = cv.getContext('2d');
+
+    // 배경
+    var g = c.createLinearGradient(0, 0, W, H);
+    g.addColorStop(0, '#1c0b33'); g.addColorStop(.55, '#3d1b74'); g.addColorStop(1, '#6b36c1');
+    c.fillStyle = g; c.fillRect(0, 0, W, H);
+
+    // 금빛 번짐
+    var rg = c.createRadialGradient(W * 0.86, 90, 20, W * 0.86, 90, 560);
+    rg.addColorStop(0, 'rgba(242,181,68,.26)'); rg.addColorStop(1, 'rgba(242,181,68,0)');
+    c.fillStyle = rg; c.beginPath(); c.arc(W * 0.86, 90, 560, 0, Math.PI * 2); c.fill();
+
+    // 카드
+    var M = 70, CY = 200, CW = W - M * 2, CH = H - CY - 150;
+    c.save();
+    c.shadowColor = 'rgba(0,0,0,.34)'; c.shadowBlur = 60; c.shadowOffsetY = 18;
+    roundRect(c, M, CY, CW, CH, 56); c.fillStyle = '#fff'; c.fill();
+    c.restore();
+
+    // 상단 보라 밴드
+    c.save();
+    roundRect(c, M, CY, CW, CH, 56); c.clip();
+    var bg = c.createLinearGradient(M, CY, M + CW, CY + 260);
+    bg.addColorStop(0, '#2a1250'); bg.addColorStop(1, '#5a2aa7');
+    c.fillStyle = bg; c.fillRect(M, CY, CW, 268);
+    c.restore();
+
+    c.textBaseline = 'alphabetic';
+    c.fillStyle = '#cab6f4';
+    c.font = '700 26px ' + CARD_FONT;
+    c.fillText('대구 그레이스 음악연습실', M + 56, CY + 74);
+
+    c.fillStyle = '#ffffff';
+    c.font = '800 60px ' + CARD_FONT;
+    c.fillText('레슨 녹음 예약 확정', M + 54, CY + 158);
+
+    c.font = '700 30px ' + CARD_FONT;
+    c.fillStyle = '#e3d7fb';
+    c.fillText(CFG.dateLabel.replace(' 일요일', '') + '  ' + slot, M + 56, CY + 222);
+
+    // 도장
+    c.save();
+    c.translate(M + CW - 150, CY + 120);
+    c.rotate(-0.14);
+    c.strokeStyle = 'rgba(255,232,170,.85)';
+    c.lineWidth = 5;
+    c.beginPath(); c.arc(0, 0, 78, 0, Math.PI * 2); c.stroke();
+    c.beginPath(); c.arc(0, 0, 66, 0, Math.PI * 2); c.stroke();
+    c.fillStyle = 'rgba(255,238,190,.95)';
+    c.font = '800 44px ' + CARD_FONT;
+    c.textAlign = 'center';
+    c.fillText('확정', 0, 16);
+    c.restore();
+    c.textAlign = 'left';
+
+    // 시간
+    var y = CY + 360;
+    c.fillStyle = '#5b2ba8';
+    c.font = '800 92px ' + CARD_FONT;
+    c.fillText(slot + ' ~ ' + addMin(slot, 30), M + 56, y);
+
+    c.fillStyle = '#8b849b';
+    c.font = '600 30px ' + CARD_FONT;
+    c.fillText('30분 녹음 · ' + CFG.place, M + 58, y + 52);
+
+    // 점선 구분
+    y += 108;
+    c.save();
+    c.strokeStyle = '#e4dcf1'; c.lineWidth = 4; c.setLineDash([12, 12]);
+    c.beginPath(); c.moveTo(M + 56, y); c.lineTo(M + CW - 56, y); c.stroke();
+    c.restore();
+
+    // 내용
+    var rows = [
+      ['이름', b.name],
+      ['곡', b.song],
+      ['키', b.key || '-'],
+      ['추가 변경', b.note || '없음'],
+      ['전화 뒷자리', '**** ' + (b.last4 || '')]
+    ];
+    var ry = y + 68;
+    rows.forEach(function (r) {
+      c.fillStyle = '#8b849b';
+      c.font = '700 28px ' + CARD_FONT;
+      c.fillText(r[0], M + 56, ry);
+
+      c.fillStyle = '#20182f';
+      c.font = '800 38px ' + CARD_FONT;
+      var lines = wrapText(c, r[1], M + 250, ry, CW - 330, 46, 3);
+      ry += Math.max(1, lines) * 46 + 26;
+    });
+
+    // 푸터
+    c.fillStyle = '#a49db3';
+    c.font = '600 27px ' + CARD_FONT;
+    c.fillText('확인·수정 : 신청 링크 → 내 예약 확인 / 수정', M + 56, CY + CH - 52);
+
+    return cv;
+  }
+
+  function fileName(slot, b) {
+    var safe = String(b.name || 'guest').replace(/[\\/:*?"<>|\s]/g, '');
+    return '그레이스녹음예약_1220_' + slot.replace(':', '') + '_' + safe + '.png';
+  }
+
+  function showImageSheet(slot, b) {
+    var cv = drawCard(slot, b);
+    var url = cv.toDataURL('image/png');
+    openSheet(
+      '<h2 id="sheetTitle">확정증 이미지</h2>' +
+      '<p>아래 이미지를 길게 눌러 <b>사진에 저장</b>하거나,<br>아래 버튼으로 내려받아 두세요.</p>' +
+      '<div style="margin:14px 0 0"><img id="imgPreview" alt="예약 확정증 이미지" src="' + url + '"></div>' +
+      '<div class="sheet-actions">' +
+        '<a class="btn btn-primary" id="imgDownload" style="display:block;text-decoration:none;line-height:1.4" href="' + url +
+          '" download="' + esc(fileName(slot, b)) + '">이미지 저장</a>' +
+        '<button type="button" class="btn btn-ghost" id="imgClose">닫기</button>' +
+      '</div>',
+      { wide: true }
+    );
+    $('imgClose').onclick = closeSheet;
+    $('imgDownload').addEventListener('click', function () {
+      setTimeout(function () { toast('이미지를 저장했어요 (안 되면 이미지를 길게 눌러 주세요)'); }, 300);
+    });
+  }
+
+  /* ------------------------------------------------------------------ *
+   * 예약 수정
+   * ------------------------------------------------------------------ */
+  function openEdit() {
+    if (!S.current) return;
+    var slot = S.current.slot, b = S.current.b;
+    S.editOld = slot;
+    S.editSlot = slot;
+    $('eSong').value = b.song || '';
+    $('eNote').value = b.note || '';
+    $('evCurSlot').textContent = slot;
+    $('eSlotErr').style.display = 'none';
+    renderEditSlots();
+    $('editView').classList.add('open');
+    lockBody(true);
+    window.scrollTo(0, 0);
+  }
+
+  function renderEditSlots() {
+    var box = $('eSlots');
+    box.innerHTML = '';
+    for (var i = 0; i < CFG.slots.length; i++) {
+      var slot = CFG.slots[i], b = S.bookings[slot];
+      var isCur = slot === S.editOld;
+      var selectable = isCur || !b;
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      var cls = 'slot';
+      if (b && !isCur) cls += ' is-taken';
+      if (slot === S.editSlot) cls += ' is-selected';
+      if (isCur) cls += ' is-mine';
+      btn.className = cls;
+      btn.setAttribute('data-eslot', slot);
+      btn.innerHTML = '<span class="t">' + esc(slot) + '</span>' +
+        '<span class="s">' + (isCur ? '지금 예약' : (b ? '마감' : '비어 있음')) + '</span>';
+      btn.disabled = !selectable;
+      if (selectable) {
+        btn.onclick = function (s) {
+          return function () {
+            S.editSlot = s;
+            $('eSlotErr').style.display = 'none';
+            renderEditSlots();
+          };
+        }(slot);
+      }
+      box.appendChild(btn);
+    }
+  }
+
+  function doEdit() {
+    if (S.busy) return;
+    var song = $('eSong').value.trim();
+    var note = $('eNote').value.trim();
+    var slotNew = S.editSlot, slotOld = S.editOld;
+    if (!song) { setFieldError($('eSong'), true); toast('곡명을 적어 주세요'); return; }
+    setFieldError($('eSong'), false);
+
+    var b = S.current.b;
+    var next = {
+      id: b.id || S.myId,
+      name: b.name,
+      song: song,
+      key: b.key || '',
+      note: note,
+      last4: String(b.last4 || (S.me && S.me.last4) || ''),
+      at: b.at || new Date().toISOString(),
+      updatedAt: new Date().toISOString()
+    };
+
+    S.busy = true;
+    var btn = $('eSave');
+    btn.disabled = true;
+    btn.textContent = '저장하는 중…';
+
+    var finish = function (ok, msg) {
+      S.busy = false;
+      btn.disabled = false;
+      btn.textContent = '수정 저장';
+      if (!ok && msg) toast(msg, 3600);
+    };
+
+    if (slotNew === slotOld) {
+      updateBooking(slotOld, next).then(function (ok) {
+        if (!ok) { finish(false, '수정을 저장하지 못했어요. 잠시 후 다시 시도해 주세요'); return; }
+        finish(true);
+        S.current = { slot: slotOld, b: S.bookings[slotOld] || next };
+        saveMe({ slot: slotOld, last4: next.last4, name: next.name, id: next.id });
+        $('editView').classList.remove('open');
+        openConfirmView(slotOld, true);
+        toast('예약을 수정했어요');
+      });
+      return;
+    }
+
+    // 시간 변경: 새 타임 선점 → 확인 → 기존 타임 해제
+    readDoc().then(function (doc) {
+      var cur = parseBookings(doc);
+      var holder = cur[slotNew];
+      if (holder && holder.id !== next.id) {
+        applyDoc(doc);
+        renderEditSlots();
+        $('eSlotErr').style.display = 'block';
+        finish(false, slotNew + ' 타임은 방금 다른 분이 신청했어요. 다른 시간을 골라 주세요');
+        return;
+      }
+      var payload = {};
+      payload[slotNew] = next;
+      return patchDoc(payload).then(function (ok) {
+        if (!ok) throw new Error('write-failed');
+        return sleep(500 + Math.random() * 400).then(function () { return readDoc(); })
+          .then(function (doc2) {
+            var held = parseBookings(doc2)[slotNew];
+            if (!held || held.id !== next.id) {
+              applyDoc(doc2);
+              throw new Error('verify-failed');
+            }
+            var rel = {};
+            rel[slotOld] = null;
+            return patchDoc(rel).then(function (ok2) {
+              if (!ok2) throw new Error('release-failed');
+              return sleep(400).then(function () { return readDoc(); })
+                .then(function (doc3) {
+                  var after = parseBookings(doc3);
+                  applyDoc(doc3);
+                  if (after[slotOld] && after[slotOld].id === next.id) throw new Error('release-failed');
+                  if (!after[slotNew] || after[slotNew].id !== next.id) throw new Error('verify-failed');
+                  finish(true);
+                  S.current = { slot: slotNew, b: after[slotNew] };
+                  S.editOld = slotNew;
+                  saveMe({ slot: slotNew, last4: next.last4, name: next.name, id: next.id });
+                  $('editView').classList.remove('open');
+                  openConfirmView(slotNew, true);
+                  toast(slotOld + ' → ' + slotNew + ' 타임으로 옮겼어요', 3200);
+                });
+            });
+          });
+      });
+    }).catch(function (err) {
+      var msg = '시간을 바꾸지 못했어요. 잠시 후 다시 시도해 주세요';
+      if (err && err.message === 'verify-failed') msg = '그 사이 다른 분이 먼저 신청했어요. 원래 시간은 그대로예요';
+      finish(false, msg);
+      refresh(false);
+    });
   }
 
   /* ------------------------------------------------------------------ *
@@ -780,49 +1445,201 @@
     setTimeout(function () { $('fName').focus({ preventScroll: true }); }, 260);
   }
 
-  function openSheet(html) {
+  function openSheet(html, opts) {
+    opts = opts || {};
+    $('sheetCard').className = 'sheet-card' + (opts.wide ? ' wide' : '');
     $('sheetCard').innerHTML = html;
+    S.sheetClose = !!opts.closeOnBackdrop;
     $('sheet').classList.add('open');
   }
   function closeSheet() {
     $('sheet').classList.remove('open');
     $('sheetCard').innerHTML = '';
+    S.sheetClose = false;
   }
 
-  function successSheet(values, slot) {
+  /* 확인 팝업 */
+  function openConfirmModal(p) {
     openSheet(
-      '<div class="check" aria-hidden="true">✓</div>' +
-      '<h2 id="sheetTitle">' + esc(values.name) + '님,<br>' + esc(slot) + ' 신청 완료!</h2>' +
-      '<p>2026년 12월 20일(일) · 그레이스 음악연습실 남산점</p>' +
+      '<div class="wide-ico" aria-hidden="true">🕒</div>' +
+      '<h2 id="sheetTitle">이 시간으로 신청하시는 게 맞나요?</h2>' +
+      '<p>확인을 누르면 신청이 확정돼요</p>' +
       '<dl class="recap">' +
-      '<div><dt>시간</dt><dd>' + esc(slot) + ' ~ ' + addMin(slot, 30) + '</dd></div>' +
-      '<div><dt>곡</dt><dd>' + esc(values.song) + '</dd></div>' +
-      '<div><dt>키</dt><dd>' + esc(values.key) + '</dd></div>' +
-      (values.note ? '<div><dt>요청</dt><dd>' + esc(values.note) + '</dd></div>' : '') +
+        '<div><dt>날짜</dt><dd>' + esc(CFG.dateLabel) + '</dd></div>' +
+        '<div><dt>시간</dt><dd>' + esc(p.slot) + ' ~ ' + esc(addMin(p.slot, 30)) + '</dd></div>' +
+        '<div><dt>이름</dt><dd>' + esc(p.name) + '</dd></div>' +
+        '<div><dt>곡</dt><dd>' + esc(p.song) + '</dd></div>' +
+        '<div><dt>키</dt><dd>' + esc(p.key) + '</dd></div>' +
+        (p.note ? '<div><dt>추가 변경</dt><dd>' + esc(p.note) + '</dd></div>' : '') +
+        '<div><dt>뒷자리</dt><dd>**** ' + esc(p.last4) + '</dd></div>' +
       '</dl>' +
-      '<button type="button" class="btn btn-primary" id="sheetClose">확인</button>'
+      '<div class="sheet-actions">' +
+        '<button type="button" class="btn btn-primary" id="cmOk">확인</button>' +
+        '<button type="button" class="btn btn-ghost" id="cmCancel">취소</button>' +
+      '</div>',
+      { closeOnBackdrop: false }
     );
-    $('sheetClose').onclick = function () {
+    $('cmCancel').onclick = function () {
       closeSheet();
-      var t = document.getElementById('statusTitle');
-      if (t) window.scrollTo({ top: t.closest('.card').getBoundingClientRect().top + window.pageYOffset - 12, behavior: 'smooth' });
+      S.pending = null;
+      toast('신청하지 않았어요. 적은 내용은 그대로 남아 있어요');
+    };
+    $('cmOk').onclick = function () { confirmSave(); };
+  }
+
+  function confirmSave() {
+    var p = S.pending;
+    if (!p || S.busy) return;
+    S.busy = true;
+    var okBtn = $('cmOk');
+    okBtn.disabled = true;
+    okBtn.textContent = '신청하는 중…';
+
+    book(p.slot, p).then(function (res) {
+      S.busy = false;
+      if (res.ok) {
+        closeSheet();
+        saveMe({ slot: p.slot, last4: String(p.last4), name: p.name, id: S.myId });
+        $('form').reset();
+        fillKey('');
+        S.selected = null;
+        S.pending = null;
+        render();
+        openConfirmView(p.slot, true);
+        return;
+      }
+      S.busy = false;
+      okBtn.disabled = false;
+      okBtn.textContent = '확인';
+
+      if (res.dup) {
+        closeSheet();
+        S.pending = null;
+        showDupModal(res.dup);
+        refresh(false);
+      } else if (res.taken) {
+        closeSheet();
+        S.pending = null;
+        S.selected = null;
+        render();
+        toast(res.taken.name + '님이 방금 신청했어요. 다른 시간을 골라 주세요', 3800);
+        refresh(false);
+      } else if (res.error === 'store') {
+        closeSheet();
+        S.pending = null;
+        recoverStore().then(function (doc) { applyDoc(doc); toast('저장소를 다시 준비했어요. 한 번 더 신청해 주세요', 3600); });
+      } else {
+        closeSheet();
+        S.pending = null;
+        banner('신청을 저장하지 못했어요. 잠시 후 다시 시도해 주세요.', true);
+        toast('저장에 실패했어요. 잠시 후 다시 시도해 주세요', 3200);
+        render();
+      }
+    }).catch(function () {
+      S.busy = false;
+      if (okBtn) { okBtn.disabled = false; okBtn.textContent = '확인'; }
+      toast('저장에 실패했어요. 잠시 후 다시 시도해 주세요', 3200);
+      render();
+    });
+  }
+
+  /* 중복 신청 안내 팝업 */
+  function showDupModal(slot) {
+    var b = S.bookings[slot];
+    openSheet(
+      '<div class="wide-ico" aria-hidden="true">🙋</div>' +
+      '<h2 id="sheetTitle">이미 신청된 내역이 있어요</h2>' +
+      '<p style="margin-bottom:4px">' + esc(dupMessage(slot)) + '</p>' +
+      (b ? '<dl class="recap"><div><dt>시간</dt><dd>' + esc(slot) + '</dd></div>' +
+        '<div><dt>이름</dt><dd>' + esc(b.name) + '</dd></div>' +
+        '<div><dt>곡</dt><dd>' + esc(b.song) + '</dd></div></dl>' : '') +
+      '<div class="sheet-actions">' +
+        '<button type="button" class="btn btn-primary" id="dupGo">내 예약 확인 / 수정</button>' +
+        '<button type="button" class="btn btn-ghost" id="dupClose">닫기</button>' +
+      '</div>',
+      { closeOnBackdrop: true }
+    );
+    $('dupClose').onclick = closeSheet;
+    $('dupGo').onclick = function () {
+      closeSheet();
+      if (b) openConfirmView(slot, true);
+      else openLookup();
     };
   }
 
-  function addMin(hhmm, m) {
-    var p = hhmm.split(':');
-    var total = parseInt(p[0], 10) * 60 + parseInt(p[1], 10) + m;
-    var h = Math.floor(total / 60), mi = total % 60;
-    return String(h).padStart(2, '0') + ':' + String(mi).padStart(2, '0');
+  /* 내 예약 조회 */
+  function openLookup() {
+    var saved = S.me && S.me.slot ? S.me : null;
+    openSheet(
+      '<div class="wide-ico" aria-hidden="true">🎫</div>' +
+      '<h2 id="sheetTitle">내 예약 확인 / 수정</h2>' +
+      '<p>신청할 때 적은 전화번호 뒷 4자리를<br>입력해 주세요</p>' +
+      '<input class="pin-input" id="lkInput" type="tel" inputmode="numeric" maxlength="4" autocomplete="off" aria-label="전화번호 뒷 4자리" placeholder="0000">' +
+      '<p class="err" id="lkErr" style="display:none">입력하신 뒷 4자리로 신청된 예약을 찾지 못했어요</p>' +
+      '<div class="sheet-actions">' +
+        '<button type="button" class="btn btn-primary" id="lkGo">확인</button>' +
+        (saved ? '<button type="button" class="btn btn-ghost" id="lkSaved">이 기기에 저장된 예약 보기 (' +
+          esc(saved.slot) + ' · ' + esc(saved.last4) + ')</button>' : '') +
+        '<button type="button" class="btn btn-ghost" id="lkCancel">닫기</button>' +
+      '</div>',
+      { closeOnBackdrop: true }
+    );
+    var input = $('lkInput');
+    input.focus();
+    input.addEventListener('input', function () {
+      input.value = input.value.replace(/[^0-9]/g, '').slice(0, 4);
+      $('lkErr').style.display = 'none';
+    });
+    input.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') { e.preventDefault(); doLookup(input.value); }
+    });
+    $('lkGo').onclick = function () { doLookup(input.value); };
+    $('lkCancel').onclick = closeSheet;
+    if (saved) {
+      $('lkSaved').onclick = function () {
+        doLookup(String(saved.last4), true);
+      };
+    }
   }
 
+  function doLookup(raw, silent) {
+    var l4 = String(raw || '').replace(/[^0-9]/g, '');
+    if (l4.length !== 4) {
+      $('lkErr').textContent = '숫자 4자리를 입력해 주세요';
+      $('lkErr').style.display = 'block';
+      return;
+    }
+    var btn = $('lkGo');
+    if (btn) { btn.disabled = true; btn.textContent = '확인하는 중…'; }
+    readDoc().then(function (doc) {
+      applyDoc(doc);
+      var hits = findByLast4(l4);
+      if (btn) { btn.disabled = false; btn.textContent = '확인'; }
+      if (!hits.length) {
+        $('lkErr').textContent = '입력하신 뒷 4자리로 신청된 예약을 찾지 못했어요';
+        $('lkErr').style.display = 'block';
+        return;
+      }
+      closeSheet();
+      openConfirmView(hits[0].slot, true);
+      if (!silent) toast('본인 확인 완료 · 예약을 불러왔어요');
+      else toast('저장된 예약을 불러왔어요');
+    }).catch(function () {
+      if (btn) { btn.disabled = false; btn.textContent = '확인'; }
+      $('lkErr').textContent = '지금 확인할 수 없어요. 잠시 후 다시 시도해 주세요';
+      $('lkErr').style.display = 'block';
+    });
+  }
+
+  /* 관리자 */
   function adminGate() {
     openSheet(
       '<h2 id="sheetTitle">관리자 확인</h2>' +
       '<p>PIN 4자리를 입력해 주세요</p>' +
       '<input class="pin-input" id="pinInput" type="password" inputmode="numeric" pattern="[0-9]*" maxlength="8" autocomplete="off" aria-label="관리자 PIN">' +
       '<p class="err" id="pinErr" style="display:none;color:#b3271b;font-size:12.5px;font-weight:700;margin:0 0 10px">PIN이 맞지 않아요</p>' +
-      '<button type="button" class="btn btn-primary" id="pinGo">확인</button>'
+      '<button type="button" class="btn btn-primary" id="pinGo">확인</button>',
+      { closeOnBackdrop: true }
     );
     var input = $('pinInput');
     input.focus();
@@ -846,7 +1663,8 @@
         S.admin = true;
         closeSheet();
         $('adminNote').classList.add('show');
-        $('adminFab').hidden = true;        render();
+        $('adminFab').hidden = true;
+        render();
         toast('관리자 모드로 들어왔어요');
       } else {
         var e = $('pinErr');
@@ -864,10 +1682,14 @@
       '<h2 id="sheetTitle">' + esc(b.name) + '님 신청 취소</h2>' +
       '<p>' + esc(slot) + ' · ' + esc(b.song) + '</p>' +
       '<dl class="recap"><div><dt>키</dt><dd>' + esc(b.key) + '</dd></div>' +
+      '<div><dt>뒷자리</dt><dd>' + esc(b.last4 || '—') + '</dd></div>' +
       (b.note ? '<div><dt>요청</dt><dd>' + esc(b.note) + '</dd></div>' : '') + '</dl>' +
       '<p style="margin-bottom:16px">이 신청을 취소하면 다른 분이 다시 신청할 수 있어요.</p>' +
-      '<button type="button" class="btn btn-primary" id="cancelGo" style="background:linear-gradient(135deg,#b3271b,#d1483a);box-shadow:none">취소하기</button>' +
-      '<button type="button" class="btn btn-ghost" id="cancelNo" style="width:100%;margin-top:8px">그대로 두기</button>'
+      '<div class="sheet-actions">' +
+        '<button type="button" class="btn btn-primary" id="cancelGo" style="background:linear-gradient(135deg,#b3271b,#d1483a);box-shadow:none">취소하기</button>' +
+        '<button type="button" class="btn btn-ghost" id="cancelNo">그대로 두기</button>' +
+      '</div>',
+      { closeOnBackdrop: true }
     );
     $('cancelNo').onclick = closeSheet;
     $('cancelGo').onclick = function () {
@@ -876,7 +1698,7 @@
       cancelSlot(slot).then(function (ok) {
         closeSheet();
         if (ok) {
-          if (S.myBooking && S.myBooking.slot === slot) saveMine(null);
+          if (S.me && S.me.slot === slot) saveMe(null);
           toast(b.name + '님 ' + slot + ' 신청을 취소했어요');
           render();
         } else {
@@ -910,18 +1732,28 @@
     $('form').addEventListener('submit', function (e) {
       e.preventDefault();
       if (S.busy) return;
+
       var name = $('fName').value.trim();
+      var last4 = $('fLast4').value.replace(/[^0-9]/g, '');
       var song = $('fSong').value.trim();
       var key = $('fKey').value.trim();
       var note = $('fNote').value.trim();
+
       var bad = false;
-      [['fName', name], ['fSong', song], ['fKey', key]].forEach(function (p) {
-        var el = $(p[0]);
-        var miss = !p[1];
-        setFieldError(el, miss);
-        if (miss) { bad = true; if (!el._focusDone) { el.focus(); el._focusDone = true; } }
-      });
-      if (bad) { toast('빈 칸을 채워 주세요'); return; }
+      [['fName', !!name], ['fLast4', last4.length === 4], ['fSong', !!song], ['fKey', !!key]]
+        .forEach(function (p) {
+          var el = $(p[0]);
+          var miss = !p[1];
+          setFieldError(el, miss);
+          if (miss) { bad = true; if (!el._focusDone) { el.focus(); el._focusDone = true; } }
+        });
+      if (bad) {
+        if (last4.length !== 4) toast('전화번호 뒷 4자리를 숫자로 적어 주세요');
+        else toast('빈 칸을 채워 주세요');
+        return;
+      }
+      [['fName'], ['fLast4'], ['fSong'], ['fKey']].forEach(function (p) { $(p[0])._focusDone = false; });
+
       if (!S.selected) {
         toast('먼저 시간을 골라 주세요');
         window.scrollTo({ top: $('slots').getBoundingClientRect().top + window.pageYOffset - 90, behavior: 'smooth' });
@@ -929,48 +1761,18 @@
       }
       var slot = S.selected;
 
-      // 같은 이름으로 이미 다른 시간에 신청했는지 확인
-      var dup = null;
-      for (var i = 0; i < CFG.slots.length; i++) {
-        var s = CFG.slots[i], b = S.bookings[s];
-        if (b && s !== slot && b.name.trim() === name) { dup = s; break; }
-      }
-      var go = function () {
-        S.busy = true;
-        var btn = $('submitBtn');
-        btn.disabled = true;
-        btn.textContent = '신청하는 중…';
-        book(slot, { name: name, song: song, key: key, note: note }).then(function (res) {
-          S.busy = false;
-          btn.disabled = false;
-          if (res.ok) {
-            saveMine({ slot: slot, id: S.myId });
-            $('form').reset();
-            fillKey('');
-            S.selected = null;
-            render();
-            successSheet({ name: name, song: song, key: key, note: note }, slot);
-          } else if (res.taken) {
-            S.selected = null;
-            toast(res.taken.name + '님이 방금 신청했어요. 다른 시간을 골라 주세요', 3800);
-            refresh(false);
-          } else if (res.error === 'store') {
-            recoverStore().then(function (doc) { applyDoc(doc); toast('저장소를 다시 준비했어요. 한 번 더 신청해 주세요', 3600); });
-          } else {
-            banner('신청을 저장하지 못했어요. 잠시 후 다시 시도해 주세요.', true);
-            toast('저장에 실패했어요. 잠시 후 다시 시도해 주세요', 3200);
-            render();
-          }
-        }).catch(function () {
-          S.busy = false;
-          btn.disabled = false;
-          render();
-          toast('저장에 실패했어요. 잠시 후 다시 시도해 주세요', 3200);
-        });
-      };
+      // 1인 1타임: 같은 뒷자리로 이미 신청한 내역이 있으면 막습니다
+      var dup = findDup(last4, slot);
+      if (dup) { showDupModal(dup.slot); return; }
 
-      if (dup && !window.confirm('이미 ' + dup + '에 ' + name + '님 이름으로 신청되어 있어요.\n' + slot + '에도 추가로 신청할까요?')) return;
-      go();
+      S.pending = { slot: slot, name: name, song: song, key: key, note: note, last4: last4 };
+      openConfirmModal(S.pending);
+    });
+
+    $('fLast4').addEventListener('input', function () {
+      var v = this.value.replace(/[^0-9]/g, '').slice(0, 4);
+      if (v !== this.value) this.value = v;
+      setFieldError(this, false);
     });
 
     $('fKey').addEventListener('input', function () {
@@ -979,8 +1781,46 @@
       for (var i = 0; i < chips.length; i++) chips[i].setAttribute('aria-pressed', String(chips[i].dataset.k === $('fKey').value.trim()));
     });
 
+    ['fName', 'fSong', 'fKey'].forEach(function (id) {
+      $(id).addEventListener('input', function () { setFieldError(this, false); });
+    });
+
+    $('myPageBtn').onclick = function () {
+      if (S.me && S.me.slot && S.bookings[S.me.slot]) openConfirmView(S.me.slot, true);
+      else openLookup();
+    };
+
+    $('cvClose').onclick = function () { closeScreens(); render(); };
+
+    $('cvCopy').onclick = function () {
+      var c = S.current;
+      if (!c) return;
+      copyText(bookingText(c.slot, c.b)).then(function (ok) {
+        toast(ok ? '예약 내역을 복사했어요' : '복사가 안 됐어요. 화면을 길게 눌러 복사해 주세요', 3000);
+      });
+    };
+
+    $('cvImage').onclick = function () {
+      var c = S.current;
+      if (!c) return;
+      showImageSheet(c.slot, c.b);
+    };
+
+    $('cvEdit').onclick = function () { openEdit(); };
+
+    $('evBack').onclick = function () {
+      $('editView').classList.remove('open');
+      renderEditSlots();
+      lockBody(true);
+    };
+    $('eCancel').onclick = function () {
+      $('editView').classList.remove('open');
+      lockBody(true);
+    };
+    $('eSave').onclick = doEdit;
+
     $('sheet').addEventListener('click', function (e) {
-      if (e.target === $('sheet') && S.admin) closeSheet();
+      if (e.target === $('sheet') && S.sheetClose) closeSheet();
     });
 
     $('adminFab').onclick = adminGate;
@@ -1001,7 +1841,7 @@
       var done = false;
       patchDoc(payload).then(function (ok) {
         done = ok;
-        saveMine(null);
+        saveMe(null);
         return refresh(false);
       }).then(function () { toast(done ? '모든 신청을 비웠어요' : '초기화하지 못했어요'); });
     };
@@ -1010,6 +1850,9 @@
       if (document.visibilityState === 'visible') refresh(false);
     });
     window.addEventListener('online', function () { refresh(false); });
+    window.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && S.sheetClose) closeSheet();
+    });
   }
 
   function startPolling() {
@@ -1022,6 +1865,7 @@
   function init() {
     buildChips();
     bind();
+    renderMyBar();
     var isAdmin = /(^|[?&])admin=1?(&|$)/.test(location.search) || location.hash === '#admin';
     refresh(true).then(function () {
       // 주소에 admin=1 로 들어온 경우 바로 PIN 입력을 띄웁니다
